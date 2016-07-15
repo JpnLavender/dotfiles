@@ -1,0 +1,249 @@
+" vim: set ft=vimperator:
+"3.0 (created: 2011/03/06 22:51:04)
+
+"source! ~/.vimperatorrc.local
+
+" 表示する履歴の件数を設定する(デフォルトは100)
+set messages=500
+" verboseレベルを設定し，全てのechoerr/echomsgの履歴を見られるようにする(デフォルトは0)
+set verbose=15
+
+" plugin loader
+" 必要なもののsymlinkのみのフォルダを作成し.vimperator/pluginにsymlinkを置くため不要
+" let g:plugin_loader_roots = "/Users/yuya.yaguchi/environment/vimperator-plugins"
+" let g:plugin_loader_plugins = "_libly,_smooziee,feedSomeKeys_3,statusline-toolbar,twittperator
+
+" ナビゲーションバーを消す
+set gui=nonavigation
+
+" ブラウザタイトルの変更
+" Firefox デフォルトは 「Mozilla - Firefox」、vimperatorを入れると「vimperator」
+"set titlestring=Alpdaca - MacBookPro
+
+" カラースキーム
+"colorscheme onedark
+"============================
+" colorscheme
+"============================
+" デフォルトのヒント派手すぎ＞＜
+hi Hint font-family: Arial; font-size: 15px; font-weight: bold; text-shadow: -1px -1px 2px black,  1px -1px 2px black,  -1px 1px 2px black,  1px 1px 2px black; color: #33cccc;
+hi HintElem color: gray; background-color: #a1e4e6;
+hi HintActive color: black; background-color: #ff8700;
+
+"ブックマーク
+nnoremap b :bmarks<space>
+nnoremap B :hb<space>
+
+"履歴
+nnoremap H :history<Enter>
+
+" undo一覧から開く
+nnoremap U :undo<Space>
+let g:hint_tombloo_key = 'r'
+
+" ビープ音無効・ビジュアルレベル使用
+"set visualbell
+"hi Bell opacity: .5;
+
+" 検索で大文字小文字を無視
+set ignorecase
+
+" 自動入力欄フォーカスを無効化
+set focuscontent
+
+" エディタをMacVim-KaoriYaに(mvimスクリプトをダウンロードして使う
+set editor='~/bin/mvim -f'
+
+" help や adoon 等の表示を別のタブに表示させる
+"set newtab=all
+
+" ヒントモードを数字から文字へ
+set hintchars=asdfghjklqwertyuiozxcvbnm
+
+"visualモード
+nnormap <C-c> c;
+
+" ファイルダウンロード完了時のウイルススキャン機能オフ
+set! browser.download.manager.scanWhenDone=true
+
+" アドオンインストール時の待ち時間カット
+set! security.dialog_enable_delay=0
+
+" JavaScriptでのウィンドウ移動・リサイズ拒否
+set! dom.disable_window_move_resize=true
+
+" 新規タブをバックグラウンドで
+set! browser.tabs.loadDivertedInBackground=true
+
+" ex mode時IMEをOFF
+style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
+
+"はてなブックマーク設定（使えない）
+javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js',  {__proto__: this});
+javascript <<EOF
+liberator.globalVariables.hBookmark_shortcuts = {
+    hintsAdd     : 'C',
+    hintsComment : 'c',
+    add          : ['C'],
+    comment      : ['c'],
+};
+EOF
+
+
+" キーマップ Key Mapping
+"==============================================================================
+" mapname   normal  visual  ???     insert  commandline
+" noremap   o       o       o       x       x
+" noremap!  x       x       x       o       o
+" nnoremap  o       x       x       x       x
+" vnoremap  x       o       x       x       x
+" onoremap  x       x       o       x       x
+" inoremap  x       x       x       o       x
+" cnoremap  x       x       x       x       o
+"------------------------------------------------------------------------------
+
+" autocmd VimperatorEnter .* <args> を lazy コマンドとして登録
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+
+" leader = ','
+let mapleader=','
+
+" 選択文字列ののコピーを <C-c> に割り当て
+nnoremap <C-c> :echo Yank!<CR>Y
+
+" j/k でのスクロール幅を 1行 から 7行 に変更
+nnoremap j 5<C-e>
+nnoremap k 5<C-y>
+
+" Backspace に戻るを割り当て
+nnoremap <BS> <A-Left>
+
+" a/s でタブ移動
+nnoremap a gT
+nnoremap s gt
+nnoremap l L
+nnoremap h H
+
+" p <-> P
+nnoremap p P
+nnoremap P p
+
+" c -> C-a
+nnoremap <C-a> c
+
+" newtab
+nnoremap <C-g> :tabopen<Space>google.com<Enter>
+nnoremap <C-a> :tabopen<Space>amazon.co.jp<Enter>
+nnoremap <C-w> :tabopen<Space>wikipedia<Space>
+nnoremap <C-t> :tabopen<Space>https://tweetdeck.twitter.com/<Enter>
+nnoremap <C-s> :tabopen<Space>https://slack.com/<Enter>
+nnoremap <C-f> :tabopen<Space>facebook<enter>
+nnoremap <C-y> :tabopen<Space>youtube.com<Enter>
+
+nnoremap <Leader>f :set invfullscreen<CR>
+
+" vimperatorrcリロード
+nnoremap <C-r> :source ~/.vimperatorrc<CR>
+
+" tombloo
+"nnoremap o :tombloo Link<CR>
+"nnoremap O :tombloo! Link<CR>
+"nnoremap q :tombloo Quote<CR>
+"nnoremap Q :tombloo! Quote<CR>
+
+" ; <-> :
+nnoremap ; :
+nnoremap : ;
+
+nnoremap <enter> <Space>
+nnoremap <Space> <enter>
+
+
+" [[, ]] を日本語向けに
+set nextpattern=^(次|つぎ)(へ|の|ペ),^続き,\bnext\b,^>$,^(>>|&#187;)$,^(>|&#187;),(>|&#187;)$,\bmore\b
+set previouspattern=^(前|まえ)(へ|の|ペ),^戻る,\bprev|previous\b,^<$,^(<<|&#171;)$,^(<|&#171;),(<|&#171;)$
+
+" Twittperator
+" APIを常時SSLで接続するように
+let g:twittperator_use_ssl_connection_for_api_ep = 1
+
+" エンターキーがうまく行かねえ
+"lazy fmaps -u='kcw\.kddi\.ne\.jp/' -events=vkeydown,vkeyup,vkeypress j k f m <Enter>
+ignorekeys clear
+ignorekeys add kcw\\.kddi\\.ne\\.jp -except s,a,g,t,T
+
+" feedSomeKeys_3
+"command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+"lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x r # [ ] ? gi gs gd ga gc
+"lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j k n p o u e x r # [ ] ? gi gs gd ga gc
+
+"lazy fmaps -u='livedoor\.com/reader/?' j k s a p o v c i,p <Space> <S-Space> z <S-z> b < > q w e,g
+"noremap -u='(fastladder|livedoor)\.com/reader' h :tombloo ReBlog - LDR<CR>
+"noremap -u='(fastladder|livedoor)\.com/reader' H :tombloo! ReBlog - LDR<CR>
+"noremap -u='(fastladder|livedoor)\.com/reader' o :tombloo Link - LDR<CR>
+"noremap -u='(fastladder|livedoor)\.com/reader' O :tombloo! Link - LDR<CR>
+
+" LDR
+ignorekeys add reader\\.livedoor\\.com/reader -except g,t,T,d
+
+" reblog machine
+"lazy fmaps -u='reblog\.machine\.mamemomonga\.com/dashboard' j k h l t
+
+" reblogen
+ignorekeys add reblogen\\.com/dashboard -except g,t,T,d
+
+
+
+
+" migemo
+"set hintmatching=custom
+
+" ,c で今見てるタブをChromeで開く
+js <<EOM
+mappings.addUserMap([modes.NORMAL,modes.VISUAL],[',c'], 'Open URL In Chrome',
+  function(){
+    // macの場合
+    io.system("open -a '/Applications/Google\ Chrome.app' --args '" + buffer.URL + "'");
+  },{
+    rhs: 'Open URL In Chrome'
+  }
+);
+EOM
+
+"プラグイン設定
+" Greasemonkey 0.9.xでwindowを共通にする
+javascript <<EOF
+/*autocommands.add('VimperatorEnter', '.*',
+  function() {
+    let gm = Components.classes['@greasemonkey.mozdev.org/greasemonkey-service;1'];
+    if (gm) {
+      gm = gm.getService().wrappedJSObject;
+      if (gm.injectScripts.toSource().search('sharedWindow') == -1) {
+          gm.injectScripts = liberator.eval(
+              gm.injectScripts.toSource()
+                  .replace(/(?=var firebugConsole)/,
+                          'var sharedWindow = {};' +
+                          'sharedWindow.window = sharedWindow;' +
+                          'sharedWindow.__proto__ = new XPCNativeWrapper(unsafeContentWin);')
+                  .replace(/(?=sandbox\.__proto__)/, ' sandbox.window = sharedWindow;'),
+              gm.injectScripts);
+      }
+    }
+  });*/
+EOF
+
+javascript <<EOF
+(function () {
+ var name = "zurukko";
+ var desc = "Read current page with zurukko";
+ var command = function (args) {
+ var location = content.document.location;
+ var newURL = "http://" + location.host + ".zurukko.jp" + location.pathname;
+ liberator.open(newURL);
+ };
+
+ commands.addUserCommand([name], desc, command);
+ })();
+EOF
+
+"echo "vimperator: Welcome back."

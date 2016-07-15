@@ -1,0 +1,1 @@
+/Users/roof/.config/fisherman/segment/segment_right.fish

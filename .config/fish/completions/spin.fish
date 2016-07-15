@@ -1,0 +1,1 @@
+/Users/Nagisafairu/.config/fisherman/spin/completions/spin.fish

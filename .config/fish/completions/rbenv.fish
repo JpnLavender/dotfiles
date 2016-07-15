@@ -1,0 +1,1 @@
+/Users/roof/.config/fisherman/rbenv/completions/rbenv.fish

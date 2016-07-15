@@ -1,0 +1,42 @@
+" echo "おこるよこれもう。 cv:しずる"
+"
+echo "2016-07-08"
+""""""""""""""""""""""""""""""
+"設定
+""""""""""""""""""""""""""""""
+
+"color設定(tmux起動時の表示バグ回避
+let g:solarized_termtrans=1
+set t_ut=
+
+"ウィンドウ幅より大きい場合は折り返さないように"
+set nowrap
+"Vimが作成するswpファイルを作成しない"
+set noswapfile
+
+"最初に出てくる広告的なのを消す"
+set notitle
+"viとの互換をなくす"
+set nocompatible
+"BackSpaseを使えるようにする 
+set backspace=indent,eol,start
+"折り返し無し
+set ruler
+"シンタクスハイライトをONにする"
+syntax on
+"小文字のみで検索したときに大文字小文字を無視する
+set smartcase
+" 検索結果をハイライト表示する
+set hlsearch
+" 行番号を表示する
+set number
+" 隠しファイルをデフォルトで表示させる
+let NERDTreeShowHidden = 1
+"xでyankが消えないように
+noremap "x _x
+"デフォルトでステータスラインの表示
+set statusline=2
+"ビープ音消す
+set vb t_vb=
+"なんか軽くなるらしい
+set re=0

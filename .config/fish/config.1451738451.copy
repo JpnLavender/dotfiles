@@ -1,0 +1,9 @@
+set -g VAGRANT_HOME /Volumes/sdcard/.vagrant.d/
+set -g ANDROID_HOME $HOME/Library/Android/sdk
+set -g PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
+
+set -e fish_key_bindings
+set -U fish_key_bindings fish_vi_key_bindings
+set fish_path $HOME/.oh-my-fish
+set fish_theme budspencer
+. $fish_path/oh-my-fish.fish

@@ -1,0 +1,371 @@
+let g:user_emmet_leader_key='<c-e>'
+
+"""""""""""""""""""""""""""""""
+" 起動時にマーク表示
+"""""""""""""""""""""""""""""""
+aug show-marks-sync
+	au!
+	au BufReadPost * sil! DoShowMarks
+aug END 
+"""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+"検索数表示(anzu)
+"""""""""""""""""""""""""""""""
+nmap n <Plug>(anzu-mode-n) "(anzu-n-with-echo)
+nmap N <Plug>(anzu-mode-n) "(anzu-n-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+"""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+"Vim_indent-guides
+"""""""""""""""""""""""""""""""
+nnoremap <C-i> :IndentGuidesToggle<enter>
+
+" 自動カラー無効
+let g:indent_guides_auto_colors=0
+" 奇数インデントのガイドカラー
+hi IndentGuidesOdd  ctermbg=green
+" 偶数インデントのガイドカラー
+hi IndentGuidesEven ctermbg=white
+"""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""
+"VimFiler設定
+"""""""""""""""""""""""""""""""
+nnoremap <silent><C-m> :NERDTreeToggle<CR>
+vnoremap <silent> p "0p<CR>
+autocmd VimEnter * execute 'NERDTree'
+
+" autocmd FileType vimfiler nmap <buffer> <Ce> <Plug>(vimfiler_expand_or_edit)
+" let g:vimfiler_as_default_explorer = 1
+" let g:vimfiler_edit_action = 'tabopen'
+" nnoremap <C-X><C-T> :VimFiler -split -simple -winwidth=45 -no-quit<ENTER>
+" autocmd VimEnter * VimFilerExplorer
+"""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+"俺のMarkDown
+"""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_enable_realtime = 1
+" markdownのシンタクスハイライトにおいてデフォルトの折りたたみをなしにする
+let g:vim_markdown_folding_disabled=1 "
+
+" open-browser.vim
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap <Space>g <Plug>(openbrowser-smart-search)
+vmap <Space>g <Plug>(openbrowser-smart-search)
+"""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""
+"" 最後のカーソル位置を復元する
+"""""""""""""""""""""""""""""""
+if has("autocmd")
+	autocmd BufReadPost *
+				\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+				\   exe "normal! g'\"" |
+				\ endif
+endif
+""""""""""""""""""""""""""""""
+if $SHELL =~ 'fish'
+	set shell=/bin/sh
+endif
+
+""""""""""""""""""""""""""""""
+" Unit.vimの設定
+""""""""""""""""""""""""""""""
+" 入力モードで開始する
+let g:unite_enable_start_insert=0
+" バッファ一覧
+noremap <Space>p :Unite buffer<CR>
+" ファイル一覧
+noremap <Space>n :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <Space>z :Unite file_mru<CR>
+" sourcesを「今開いているファイルのディレクトリ」とする
+noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+" ウィンドウを分割して開く
+" IDE風に開く
+noremap <Space>i :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
+
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+"補完機能拡張
+""""""""""""""""""""""""""""""
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+			\ }
+
+if !exists('g:neocomplete#keyword_patterns')
+	let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+endfunction
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+	let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+""""""""""""""""""""""""""""""
+"SyntaxErrorCheck
+""""""""""""""""""""""""""""""
+let g:syntastic_mode_map = { 'mode': 'passive',
+			\ 'active_filetypes': ['ruby', 'javascript','coffee', 'scss','eruby','html','css', 'java', 'elixir'] }
+let g:syntastic_ruby_checkers = ['rubocop'] " or ['rubocop', 'mri']
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_coffee_checkers = ['coffeelint']
+let g:syntastic_scss_checkers = ['scss_lint']
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+hi SyntasticErrorSign ctermfg=160
+hi SyntasticWarningSign ctermfg=220
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+""""""""""""""""""""""""""""""
+"例外指定
+""""""""""""""""""""""""""""""
+let g:syntastic_ignore_files=['\.rb$']
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+"lightline PowerLine Git Customize
+""""""""""""""""""""""""""""""
+" vim-gitgutter
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '➜'
+let g:gitgutter_sign_removed = '✘'
+
+" lightline.vim
+let g:mline_bufhist_enable = 1
+set laststatus=2
+command! Btoggle :let g:mline_bufhist_enable = g:mline_bufhist_enable ? 0 : 1 | :redrawstatus!
+
+let g:lightline = {
+			\ 'colorscheme': 'wombat',
+			\ 'mode_map': {'c': 'NORMAL'},
+			\ 'active': {
+			\   'left': [
+			\     ['test','mode', 'paste'],
+			\     ['fugitive', 'gitgutter', 'filename'],
+			\   ],
+			\   'right': [
+			\     ['lineinfo', 'syntastic'],
+			\     ['percent'],
+			\     ['fileformat', 'fileencoding', 'filetype'],
+			\   ]
+			\ },
+			\ 'component': {
+			\   'test': '黒髪ロング清楚系'
+			\ },
+			\   'component_expand': {
+			\     'syntastic': 'SyntasticStatuslineFlag'
+			\   },
+			\   'component_type': {
+			\     'syntastic': 'error'
+			\   },
+			\ 'component_function': {
+			\   'modified': 'MyModified',
+			\   'readonly': 'MyReadonly',
+			\   'fugitive': 'MyFugitive',
+			\   'filename': 'MyFilename',
+			\   'fileformat': 'MyFileformat',
+			\   'mode': 'MyMode',
+			\   'syntastic': 'SyntasticStatuslineFlag',
+			\   'charcode': 'MyCharCode',
+			\   'gitgutter': 'MyGitGutter',
+			\ },
+			\ 'separator': {'left': '⮀', 'right': '⮂'},
+			\ 'subseparator': {'left': '⮁', 'right': '⮂'}
+			\ }
+function! LightLineHello()
+	if winwidth(0) > 70
+		return 'Hello, world!'
+	else
+		return ''
+	endif
+endfunction
+
+function! LightLineMode()
+	return  &ft == 'unite' ? 'Unite' :
+				\ &ft == 'vimfiler' ? 'VimFiler' :
+				\ &ft == 'vimshell' ? 'VimShell' :
+				\ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! MyModified()
+	return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+	return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+	return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+				\ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+				\  &ft == 'unite' ? unite#get_status_string() :
+				\  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+				\ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+				\ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+	try
+		if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+			let _ = fugitive#head()
+			return strlen(_) ? '⭠ '._ : ''
+		endif
+	catch
+	endtry
+	return ''
+endfunction
+
+function! MyFileformat()
+	return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+	return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+	return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+	return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+
+function! MyGitGutter()
+	if ! exists('*GitGutterGetHunkSummary')
+				\ || ! get(g:, 'gitgutter_enabled', 0)
+				\ || winwidth('.') <= 90
+		return ''
+	endif
+	let symbols = [
+				\ g:gitgutter_sign_added . ' ',
+				\ g:gitgutter_sign_modified . ' ',
+				\ g:gitgutter_sign_removed . ' '
+				\ ]
+	let hunks = GitGutterGetHunkSummary()
+	let ret = []
+	for i in [0, 1, 2]
+		if hunks[i] > 0
+			call add(ret, symbols[i] . hunks[i])
+		endif
+	endfor
+	return join(ret, ' ')
+endfunction
+
+" https://github.com/Lokaltog/vim-powerline/blob/develop/autoload/Powerline/Functions.vim
+function! MyCharCode()
+	if winwidth('.') <= 70
+		return ''
+	endif
+
+	" Get the output of :ascii
+	redir => ascii
+	silent! ascii
+	redir END
+
+	if match(ascii, 'NUL') != -1
+		return 'NUL'
+	endif
+
+	" Zero pad hex values
+	let nrformat = '0x%02x'
+
+	let encoding = (&fenc == '' ? &enc : &fenc)
+
+	if encoding == 'utf-8'
+		" Zero pad with 4 zeroes in unicode files
+		let nrformat = '0x%04x'
+	endif
+
+	" Get the character and the numeric value from the return value of :ascii
+	" This matches the two first pieces of the return value, e.g.
+	" "<F>  70" => char: 'F', nr: '70'
+	let [str, char, nr; rest] = matchlist(ascii, '\v\<(.{-1,})\>\s*([0-9]+)')
+
+	" Format the numeric value
+	let nr = printf(nrformat, nr)
+
+	return "'". char ."' ". nr
+endfunction
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+"vimshell
+""""""""""""""""""""""""""""""
+nnoremap <Space>e :VimShell -split -simple -winwidth=35 -no-quit<Enter>
+let g:vimshell_prompt = " ⮀ "
+let g:vimshell_secondary_prompt = "> "
+let g:vimshell_user_prompt = 'getcwd()'
+
+
+"-------------------------------------
+" previmの設定
+" -------------------------------------
+let g:previm_enable_realtime = 1
+" switch.vim
+let g:variable_style_switch_definitions = [
+\   {
+\     't': {
+\       'true': 'false'
+\     },
+\
+\     'f': {
+\       'false': 'true'
+\     },
+\   }
+\ ]
+nnoremap + :call switch#Switch(g:variable_style_switch_definitions)<cr>
+nnoremap - :Switch<cr>
