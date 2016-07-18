@@ -222,8 +222,8 @@ let g:lightline = {
 			\   'charcode': 'MyCharCode',
 			\   'gitgutter': 'MyGitGutter',
 			\ },
-			\ 'separator': {'left': '⮀', 'right': '⮂'},
-			\ 'subseparator': {'left': '⮁', 'right': '⮂'}
+			\ 'separator': {'left': '', 'right': ''},
+			\ 'subseparator': {'left': '', 'right': ''}
 			\ }
 function! LightLineHello()
 	if winwidth(0) > 70
