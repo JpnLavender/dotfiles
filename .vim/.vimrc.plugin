@@ -189,7 +189,7 @@ set laststatus=2
 command! Btoggle :let g:mline_bufhist_enable = g:mline_bufhist_enable ? 0 : 1 | :redrawstatus!
 
 let g:lightline = {
-			\ 'colorscheme': 'wombat',
+			\ 'colorscheme': 'solarized',
 			\ 'mode_map': {'c': 'NORMAL'},
 			\ 'active': {
 			\   'left': [
@@ -203,7 +203,7 @@ let g:lightline = {
 			\   ]
 			\ },
 			\ 'component': {
-			\   'message': '黒髪ロング清楚系'
+			\   'message': 'よみたんと同居'
 			\ },
 			\   'component_expand': {
 			\     'syntastic': 'SyntasticStatuslineFlag'
@@ -245,7 +245,7 @@ function! MyModified()
 endfunction
 
 function! MyReadonly()
-	return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '⭤' : ''
+	return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '' : ''
 endfunction
 
 function! MyFilename()

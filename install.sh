@@ -1,5 +1,6 @@
 #! /bin/bash
 if [ -d ~/dotfiles ]; then
+<<<<<<< HEAD
 if [ ! -e ~/.vimrc ]; then
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 elif [ ! -e ~/.vim ]; then
@@ -17,6 +18,25 @@ elln -s ~/dotfiles/.vimperatorrc ~/.vimperatorrc
 elif [ ! -e ~/.zshrc ]; then
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 fi
+=======
+    if [ ! -e ~/.vimrc ]; then
+        ln -s ~/dotfiles/.vimrc ~/.vimrc
+    elif [ ! -e ~/.vim ]; then
+        ln -s ~/dotfiles/.vim ~/.vim
+    elif [ ! -e ~/.config ]; then
+        ln -s ~/dotfiles/.config ~/.config
+    elif [ ! -e ~/.tmux.conf ]; then
+        ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+    elif [ ! -e ~/.viminfo ]; then
+        ln -s ~/dotfiles/.viminfo ~/.viminfo
+    elif [ ! -e ~/.vimperator ]; then
+        ln -s ~/dotfiles/.vimperator ~/.vimperator
+    elif [ ! -e ~/.vimperatorrc ]; then
+        ln -s ~/dotfiles/.vimperatorrc ~/.vimperatorrc
+    elif [ ! -e ~/.zshrc ]; then
+        ln -s ~/dotfiles/.zshrc ~/.zshrc
+    fi
+>>>>>>> d85c8e3dc531d63164b9ccca28db36ba2e2bb113
 else
 mkdir ~/dotfiles 
 fi
