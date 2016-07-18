@@ -203,7 +203,7 @@ let g:lightline = {
 			\   ]
 			\ },
 			\ 'component': {
-			\   'message': 'よみたんと同居'
+			\   'message': '黒髪ロング清楚'
 			\ },
 			\   'component_expand': {
 			\     'syntastic': 'SyntasticStatuslineFlag'
