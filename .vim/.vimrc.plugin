@@ -170,12 +170,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
 """"""""""""""""""""""""""""""
-"例外指定
-""""""""""""""""""""""""""""""
-let g:syntastic_ignore_files=['\.rb$']
-""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""
 "lightline PowerLine Git Customize
 """"""""""""""""""""""""""""""
 " vim-gitgutter
