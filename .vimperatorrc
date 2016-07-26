@@ -61,7 +61,7 @@ set editor='~/bin/mvim -f'
 set hintchars=asdfghjklqwertyuiozxcvbnm
 
 "visualモード
-nnormap <C-c> c;
+nnormap <C-c> c
 
 " ファイルダウンロード完了時のウイルススキャン機能オフ
 set! browser.download.manager.scanWhenDone=true
@@ -82,10 +82,10 @@ style -name commandline-ime chrome://* #liberator-commandline-command input { im
 javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js',  {__proto__: this});
 javascript <<EOF
 liberator.globalVariables.hBookmark_shortcuts = {
-    hintsAdd     : 'C',
-    hintsComment : 'c',
-    add          : ['C'],
-    comment      : ['c'],
+    hintsAdd     : '+',
+    hintsComment : '=',
+    add          : ['+'],
+    comment      : ['='],
 };
 EOF
 
@@ -132,12 +132,12 @@ nnoremap P p
 nnoremap <C-a> c
 
 " newtab
-nnoremap <C-g> :tabopen<Space>google.com<Enter>
-nnoremap <C-a> :tabopen<Space>amazon.co.jp<Enter>
+nnoremap <C-g> :tabopen<Space>google.com<Space>
+nnoremap <C-a> :tabopen<Space>amazon.co.jp<Space>
 nnoremap <C-w> :tabopen<Space>wikipedia<Space>
 nnoremap <C-t> :tabopen<Space>https://tweetdeck.twitter.com/<Enter>
 nnoremap <C-s> :tabopen<Space>https://slack.com/<Enter>
-nnoremap <C-f> :tabopen<Space>facebook<enter>
+nnoremap <C-f> :tabopen<Space>facebook<Enter>
 nnoremap <C-y> :tabopen<Space>youtube.com<Enter>
 
 nnoremap <Leader>f :set invfullscreen<CR>
