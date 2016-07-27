@@ -363,3 +363,7 @@ let g:variable_style_switch_definitions = [
 \ ]
 nnoremap + :call switch#Switch(g:variable_style_switch_definitions)<cr>
 nnoremap - :Switch<cr>
+
+" dash.vim {{{
+nmap <Leader>d <Plug>DashSearch
+" }}} "}}} "

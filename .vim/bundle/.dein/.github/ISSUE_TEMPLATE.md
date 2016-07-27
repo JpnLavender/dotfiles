@@ -13,7 +13,9 @@
 
 ```vim
 " Your minimal .vimrc
-set runtimepath+=~/path/to/unite.nvim/
+set runtimepath^=~/path/to/dein.nvim/
+call dein#begin(path)
+call dein#end()
 ```
 
 

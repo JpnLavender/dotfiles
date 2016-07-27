@@ -1,3 +1,20 @@
+" Language:    CoffeeScript
+" Maintainer:  Mick Koch <mick@kochm.co>
+" URL:         http://github.com/kchmck/vim-coffee-script
+" License:     WTFPL
+
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
+autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
+autocmd BufNewFile,BufRead *._coffee set filetype=coffee
+
+function! s:DetectCoffee()
+    if getline(1) =~ '^#!.*\<coffee\>'
+        set filetype=coffee
+    endif
+endfunction
+
+autocmd BufNewFile,BufRead * call s:DetectCoffee()
 au BufRead,BufNewFile *.ex,*.exs call s:setf('elixir')
 au BufRead,BufNewFile *.eex call s:setf('eelixir')
 au BufRead,BufNewFile * call s:DetectElixir()
@@ -28,22 +45,5 @@ autocmd BufNewFile,BufRead *.markdown,*.md,*.mdown,*.mkd,*.mkdn
       \ else |
       \   setf markdown |
       \ endif
-" Language:    CoffeeScript
-" Maintainer:  Mick Koch <mick@kochm.co>
-" URL:         http://github.com/kchmck/vim-coffee-script
-" License:     WTFPL
-
-autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
-autocmd BufNewFile,BufRead *.coffeekup,*.ck set filetype=coffee
-autocmd BufNewFile,BufRead *._coffee set filetype=coffee
-
-function! s:DetectCoffee()
-    if getline(1) =~ '^#!.*\<coffee\>'
-        set filetype=coffee
-    endif
-endfunction
-
-autocmd BufNewFile,BufRead * call s:DetectCoffee()
 " Detect vimshell rc file.
 autocmd BufNewFile,BufRead *.vimsh,.vimshrc,vimshrc set filetype=vimshrc

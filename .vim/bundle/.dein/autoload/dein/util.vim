@@ -94,7 +94,7 @@ function! dein#util#_notify(msg) abort "{{{
   elseif dein#util#_is_mac()
     if executable('terminal-notifier')
       let cmd = 'terminal-notifier -title '
-            \ . string(title) . ' -message ' . string(a:msg)
+            \ . string(title) . ' ' . string(a:msg)
       if icon != ''
         let cmd .= ' -appIcon ' . string(icon)
       endif
@@ -206,8 +206,7 @@ function! dein#util#_save_cache(vimrcs, is_state, is_starting) abort "{{{
     call mkdir(g:dein#_base_path, 'p')
   endif
 
-  call writefile([string(a:vimrcs),
-        \         dein#_vim2json(plugins), dein#_vim2json(g:dein#_ftplugin)],
+  call writefile([string(a:vimrcs), dein#_vim2json(plugins), dein#_vim2json(g:dein#_ftplugin)],
         \ dein#_get_cache_file())
 endfunction"}}}
 function! dein#util#_check_vimrcs() abort "{{{
@@ -280,8 +279,7 @@ function! dein#util#_save_state(is_starting) abort "{{{
   endfor
 
   " Add events
-  for [event, plugins] in filter(items(g:dein#_event_plugins),
-        \ "exists('##' . v:val[0])")
+  for [event, plugins] in items(g:dein#_event_plugins)
     call add(lines, printf('autocmd dein-events %s * call '
           \. 'dein#autoload#_on_event("%s", %s)',
           \ event, event, string(plugins)))
@@ -388,8 +386,7 @@ function! dein#util#_end() abort "{{{
     call dein#util#_execute_hook({}, g:dein#_hook_add)
   endif
 
-  for [event, plugins] in filter(items(g:dein#_event_plugins),
-        \ "exists('##' . v:val[0])")
+  for [event, plugins] in items(g:dein#_event_plugins)
     execute printf('autocmd dein-events %s * call '
           \. 'dein#autoload#_on_event("%s", %s)',
           \ event, event, string(plugins))
@@ -464,13 +461,9 @@ function! dein#util#_set_hook(name, hook_name, hook) abort "{{{
     call dein#util#_error(a:name . ' is not found.')
     return 1
   endif
-  let plugin = g:dein#_plugins[a:name]
-  let plugin[a:hook_name] =
+  let g:dein#_plugins[a:name][a:hook_name] =
         \ type(a:hook) != type('') ? a:hook :
         \   substitute(a:hook, '\n\s*\\\|\%(^\|\n\)\s*"[^\n]*', '', 'g')
-  if a:hook_name ==# 'hook_add'
-    call dein#util#_execute_hook(plugin, plugin[a:hook_name])
-  endif
 endfunction"}}}
 
 function! dein#util#_sort_by(list, expr) abort "{{{

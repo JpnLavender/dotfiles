@@ -129,7 +129,8 @@ endfunction
 
 
 function! s:channel_id(channel) abort
-  return ch_info(a:channel)['id']
+  " This seems to be the only way to get info about the channel once closed.
+  return matchstr(a:channel, '\d\+')
 endfunction
 
 

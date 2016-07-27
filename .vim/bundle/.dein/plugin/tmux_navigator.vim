@@ -12,7 +12,16 @@ if !exists("g:tmux_navigator_save_on_switch")
 endif
 
 function! s:TmuxOrTmateExecutable()
-  return (match($TMUX, 'tmate') != -1 ? 'tmate' : 'tmux')
+  if s:StrippedSystemCall("[[ $TMUX == *'tmate'* ]] && echo 'tmate'") == 'tmate'
+    return "tmate"
+  else
+    return "tmux"
+  endif
+endfunction
+
+function! s:StrippedSystemCall(system_cmd)
+  let raw_result = system(a:system_cmd)
+  return substitute(raw_result, '^\s*\(.\{-}\)\s*\n\?$', '\1', '')
 endfunction
 
 function! s:UseTmuxNavigatorMappings()
@@ -39,10 +48,7 @@ endfunction
 command! TmuxPaneCurrentCommand call s:TmuxPaneCurrentCommand()
 
 let s:tmux_is_last_pane = 0
-augroup tmux_navigator
-  au!
-  autocmd WinEnter * let s:tmux_is_last_pane = 0
-augroup END
+au WinEnter * let s:tmux_is_last_pane = 0
 
 " Like `wincmd` but also change tmux panes instead of vim windows when needed.
 function! s:TmuxWinCmd(direction)

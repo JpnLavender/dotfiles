@@ -79,6 +79,8 @@ if dein#load_state(s:plugin_dir)
   call dein#add('elixir-lang/vim-elixir')
   "quickrun"
   call dein#add('thinca/vim-quickrun')
+  "辞書"
+  call dein#add('rizzatti/dash.vim')
   "F移動を連打可能に"
   call dein#add('rhysd/clever-f.vim')
   "syntax
