@@ -62,6 +62,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('tpope/vim-surround')
   " インデントに色を付けて見やすくする
   call dein#add('nathanaelkane/vim-indent-guides')
+  "再起動やシャットダウンするときにvimの内容を保存しておいてくれる
   call dein#add('tpope/vim-obsession')
   "html入力補助
   call dein#add('mattn/emmet-vim')
