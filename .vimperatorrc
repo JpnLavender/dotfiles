@@ -132,7 +132,7 @@ nnoremap P p
 nnoremap <C-a> c
 
 " newtab
-nnoremap <C-g> :tabopen<Space>google.com<Space>
+nnoremap <C-g> :tabopen<Space>google<Space>
 nnoremap <C-a> :tabopen<Space>amazon.co.jp<Space>
 nnoremap <C-w> :tabopen<Space>wikipedia<Space>
 nnoremap <C-t> :tabopen<Space>https://tweetdeck.twitter.com/<Enter>
