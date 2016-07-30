@@ -4,6 +4,16 @@ if [ -d ~/dotfiles ]; then
         ln -s ~/dotfiles/.vimrc ~/.vimrc
     elif [ ! -e ~/.vim ]; then
         ln -s ~/dotfiles/.vim ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.basic ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.bundle ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.color ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.indent ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.key ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.path ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.plugin ~/.vim
+        ln -s ~/dotfiles/.vim/.vimrc.theme ~/.vim
+        ln -s ~/dotfiles/.vim/colors/solarized.vim ~/.vim/colors
+        ln -s ~/dotfiles/.vim/bundle ~/.vim
     elif [ ! -e ~/.config ]; then
         ln -s ~/dotfiles/.config ~/.config
     elif [ ! -e ~/.tmux.conf ]; then

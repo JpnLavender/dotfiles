@@ -1,4 +1,1 @@
-.*.sw[a-z]
-.*.un~
-doc/tags
-
+/doc/tags
