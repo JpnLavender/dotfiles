@@ -19,16 +19,9 @@ nmap # <Plug>(anzu-sharp-with-echo)
 """""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""
-"Vim_indent-guides
+"Vim_indent
 """""""""""""""""""""""""""""""
-nnoremap <C-i> :IndentGuidesToggle<enter>
-
-" 自動カラー無効
-let g:indent_guides_auto_colors=0
-" 奇数インデントのガイドカラー
-hi IndentGuidesOdd  ctermbg=green
-" 偶数インデントのガイドカラー
-hi IndentGuidesEven ctermbg=white
+nnoremap <C-i> :IndentLinesToggle<enter>
 """""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""
 "VimFiler設定
