@@ -1,9 +1,3 @@
-function! s:DetectJS()
-    if getline(1) =~# '^#!.*/bin/\(env\s\+\)\?node\>'
-        setfiletype javascript
-    endif
-endfunction
-autocmd BufNewFile,BufRead * call s:DetectJS()
 au BufRead,BufNewFile *.ex,*.exs call s:setf('elixir')
 au BufRead,BufNewFile *.eex call s:setf('eelixir')
 au BufRead,BufNewFile * call s:DetectElixir()
@@ -19,6 +13,12 @@ function! s:DetectElixir()
     call s:setf('elixir')
   endif
 endfunction
+function! s:DetectJS()
+    if getline(1) =~# '^#!.*/bin/\(env\s\+\)\?node\>'
+        setfiletype javascript
+    endif
+endfunction
+autocmd BufNewFile,BufRead * call s:DetectJS()
 augroup rmarkdown
     au! BufRead,BufNewFile *.Rmd  setfiletype rmarkdown
 augroup END

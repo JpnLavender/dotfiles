@@ -1,29 +1,105 @@
-# Contributing
+# CONTRIBUTING
+- - -
+1\. [Bug reports / GitHub issues](#bugreps)  
+2\. [Submitting a patch](#patches)  
+3\. [General style notes](#generalstyle)  
+4\. [Syntax checker notes](#checkerstyle)  
+- - -
 
-If you'd like to contribute to the project, you can use the usual github pull-request flow:
+<a name="bugreps"></a>
 
-1. Fork the project
-2. Make your change/addition, preferably in a separate branch.
-3. Test the new behaviour and make sure all existing tests pass (optional, see below for more information).
-4. Issue a pull request with a description of your feature/bugfix.
+## 1. Bug reports / GitHub issues
 
-## Testing
+Please note that the preferred channel for posting bug reports is the
+[issue tracker at GitHub][bug_tracker]. Reports posted elsewhere are less likely
+to be seen by the core team.
 
-This project uses [rspec](http://rspec.info/) and [vimrunner](https://github.com/AndrewRadev/vimrunner) to test its behaviour. Testing vimscript this way is still fairly experimental, but does a great job of catching regressions. Tests are written in the ruby programming language, so if you're familiar with it, you should (I hope) find the tests fairly understandable and easy to get into.
+When reporting a bug make sure you search the existing GitHub issues
+for the same/similar issues. If you find one, feel free to add a `+1`
+comment with any additional information that may help us solve the
+issue.
 
-If you're not familiar with ruby, please don't worry about it :). I'd definitely appreciate it if you could take a look at the tests and attempt to write something that describes your change. Even if you don't, Travis-bot should run the tests upon issuing a pull request, so we'll know right away if there's a regression. In that case, I'll work on the tests myself and see what I can do.
+When creating a new issue be sure to state the following:
 
-To run the test suite, provided you have ruby installed, first you need bundler:
+* steps to reproduce the bug;
+* the version of Vim you are using (run `:ver` to find out);
+* the version of syntastic you are using (see `:SyntasticInfo`).
 
+For syntax checker bugs also state the version of the checker executable
+that you are using. Adding debugging information is typically useful
+too:
+
+* open a file handled by your checker;
+* set `g:syntastic_debug` to 1 or 3;
+* run the checker;
+* copy the output of `:mes`.
+
+<a name="patches"></a>
+
+## 2. Submitting a patch
+
+Before you consider adding features to syntastic, _please_ spend a few minutes
+(re-)reading the latest version of the [manual][manual]. Syntastic is changing
+rapidly at times, and it's possible that some features you want to add exist
+already.
+
+To submit a patch:
+
+* fork the [repo][github] on GitHub;
+* make a [topic branch][branches] and start hacking;
+* submit a pull request based off your topic branch.
+
+Small, focused patches are preferred.
+
+Large changes to the code should be discussed with the core team first.
+Create an issue and explain your plan and see what we say.
+
+Also, make sure to update the manual whenever applicable. Nobody can use
+features that aren't documented.
+
+<a name="generalstyle"></a>
+
+## 3. General style notes
+
+Follow the coding conventions/styles used in the syntastic core:
+
+* use 4 space indents;
+* don't use abbreviated keywords - e.g. use `endfunction`, not `endfun`
+(there's always room for more fun!);
+* don't use `l:` prefixes for variables unless actually required (i.e.
+almost never);
+* code for maintainability; we would rather a function be a couple of
+lines longer and have (for example) some [explaining variables][variables] to
+aid readability.
+
+<a name="checkerstyle"></a>
+
+## 4. Syntax checker notes
+
+Make sure to read the [guide][guide] if you plan to add new syntax checkers.
+
+Use the existing checkers as templates, rather than writing everything
+from scratch.
+
+The preferred style for error format strings is one "clause" per line.
+E.g. (from the `coffee` checker):
+
+```vim
+let errorformat =
+    \ '%E%f:%l:%c: %trror: %m,' .
+    \ 'Syntax%trror: In %f\, %m on line %l,' .
+    \ '%EError: In %f\, Parse error on line %l: %m,' .
+    \ '%EError: In %f\, %m on line %l,' .
+    \ '%W%f(%l): lint warning: %m,' .
+    \ '%W%f(%l): warning: %m,' .
+    \ '%E%f(%l): SyntaxError: %m,' .
+    \ '%-Z%p^,' .
+    \ '%-G%.%#'
 ```
-$ gem install bundler
-```
 
-If you already have the `bundle` command (check it out with `which bundle`), you don't need this step. Afterwards, it should be as simple as:
-
-```
-$ bundle install
-$ bundle exec rspec spec
-```
-
-Depending on what kind of Vim you have installed, this may spawn a GUI Vim instance, or even several. You can read up on [vimrunner's README](https://github.com/AndrewRadev/vimrunner/blob/master/README.md) to understand how that works.
+[bug_tracker]:      https://github.com/scrooloose/syntastic/issues
+[manual]:           https://github.com/scrooloose/syntastic/blob/master/doc/syntastic.txt
+[github]:           https://github.com/scrooloose/syntastic
+[branches]:         https://github.com/dchelimsky/rspec/wiki/Topic-Branches#using-topic-branches-when-contributing-patches
+[variables]:        http://www.refactoring.com/catalog/extractVariable.html
+[guide]:            https://github.com/scrooloose/syntastic/wiki/Syntax-Checker-Guide

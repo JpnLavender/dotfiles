@@ -1,3 +1,5 @@
 .zsh_history
 
 .vimperator/info/
+
+.config/direnv/

@@ -1,76 +1,118 @@
-jellybeans.vim
-==============
+# fugitive.vim
 
-A colorful, dark color scheme, inspired by [ir_black][] and [twilight][].
+I'm not going to lie to you; fugitive.vim may very well be the best
+Git wrapper of all time.  Check out these features:
 
-Designed primarily for a graphical Vim, but includes support for 256, 88, 16,
-and 8 color terminals. On a 16 or 8 color terminal, replace its colors with
-those in `ansi-term-colors.txt` for best results.
+View any blob, tree, commit, or tag in the repository with `:Gedit` (and
+`:Gsplit`, `:Gvsplit`, `:Gtabedit`, ...).  Edit a file in the index and
+write to it to stage the changes.  Use `:Gdiff` to bring up the staged
+version of the file side by side with the working tree version and use
+Vim's diff handling capabilities to stage a subset of the file's
+changes.
 
-This script is [vimscript #2555][vimscript] at Vim.org.
+Bring up the output of `git status` with `:Gstatus`.  Press `-` to
+`add`/`reset` a file's changes, or `p` to `add`/`reset` `--patch`.  And guess
+what `:Gcommit` does!
 
-Scroll down for [screenshots][ss-anchor]!
+`:Gblame` brings up an interactive vertical split with `git blame`
+output.  Press enter on a line to edit the commit where the line
+changed, or `o` to open it in a split.  When you're done, use `:Gedit`
+in the historic buffer to go back to the work tree version.
 
-## Options
+`:Gmove` does a `git mv` on a file and simultaneously renames the
+buffer.  `:Gremove` does a `git rm` on a file and simultaneously deletes
+the buffer.
 
-### Custom Highlights
+Use `:Ggrep` to search the work tree (or any arbitrary commit) with
+`git grep`, skipping over that which is not tracked in the repository.
+`:Glog` loads all previous revisions of a file into the quickfix list so
+you can iterate over them and watch the file evolve!
 
-If you prefer slightly different colors from what Jellybeans defines,
-you can set `g:jellybeans_overrides` in your .vimrc to a dictionary of
-custom highlighting parameters:
+`:Gread` is a variant of `git checkout -- filename` that operates on the
+buffer rather than the filename.  This means you can use `u` to undo it
+and you never get any warnings about the file changing outside Vim.
+`:Gwrite` writes to both the work tree and index versions of a file,
+making it like `git add` when called from a work tree file and like
+`git checkout` when called from the index or a blob in history.
 
-    let g:jellybeans_overrides = {
-    \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
-    \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
-    \              'attr': 'bold' },
-    \}
+Use `:Gbrowse` to open the current file on GitHub, with optional line
+range (try it in visual mode!).  If your current repository isn't on
+GitHub, `git instaweb` will be spun up instead.
 
-This removes the need to edit Jellybeans directly, simplifying
-upgrades. In addition, RGB colors specified this way are run through
-the same color approximation algorithm that the core theme uses, so
-your colors work just as well in 256-color terminals.
+Add `%{fugitive#statusline()}` to `'statusline'` to get an indicator
+with the current branch in (surprise!) your statusline.
 
-If you can pick better colors than the approximator, specify them
-in the `256ctermfg` and `256ctermbg` parameters to override
-its choices.
+Last but not least, there's `:Git` for running any arbitrary command,
+and `Git!` to open the output of a command in a temp file.
 
-### Low-Color Black (16 and 8 color terminals)
+## Screencasts
 
-Since the background on a dark terminal is usually black already,
-Jellybeans appropriates the black ANSI color as a dark grey and
-uses no color when it really wants black.
+* [A complement to command line git](http://vimcasts.org/e/31)
+* [Working with the git index](http://vimcasts.org/e/32)
+* [Resolving merge conflicts with vimdiff](http://vimcasts.org/e/33)
+* [Browsing the git object database](http://vimcasts.org/e/34)
+* [Exploring the history of a git repository](http://vimcasts.org/e/35)
 
-If you can’t or don’t want to change your terminal’s color
-mappings, add
+## Installation
 
-    let g:jellybeans_use_lowcolor_black = 0
+If you don't have a preferred installation method, one option is to install
+[pathogen.vim](https://github.com/tpope/vim-pathogen), and then copy
+and paste:
 
-to your .vimrc to render “black” text as Vim’s grey (ANSI white).
+    cd ~/.vim/bundle
+    git clone git://github.com/tpope/vim-fugitive.git
+    vim -u NONE -c "helptags vim-fugitive/doc" -c q
 
-Users of Apple’s pre-10.7 Terminal.app can use the TerminalColours
-plugin ([Leopard][tc-leopard], [Snow Leopard][tc-snowleopard]) to
-change the default colors.
+If your Vim version is below 7.2, I recommend also installing
+[vim-git](https://github.com/tpope/vim-git) for syntax highlighting and
+other Git niceties.
 
-### Italics
+## FAQ
 
-Jellybeans disables italics in terminal Vim by default, as some
-terminals do other things with the text's colors instead of
-actually italicizing the text. If your terminal does fully
-support italics, add
+> I installed the plugin and started Vim.  Why don't any of the commands
+> exist?
 
-    let g:jellybeans_use_term_italics = 1
+Fugitive cares about the current file, not the current working
+directory.  Edit a file from the repository.
 
-to your .vimrc to enable italics in terminal Vim.
+> I opened a new tab.  Why don't any of the commands exist?
 
-## Screenshots
+Fugitive cares about the current file, not the current working
+directory.  Edit a file from the repository.
 
-![][preview-ss]
+> Why is `:Gbrowse` not using the right browser?
 
+`:Gbrowse` delegates to `git web--browse`, which is less than perfect
+when it comes to finding the right browser.  You can tell it the correct
+browser to use with `git config --global web.browser ...`.  On OS X, for
+example, you might want to set this to `open`.  See `git web--browse --help`
+for details.
 
-[ir_black]: http://blog.infinitered.com/entries/show/6
-[twilight]: http://www.vim.org/scripts/script.php?script_id=1677
-[vimscript]: http://www.vim.org/scripts/script.php?script_id=2555
-[tc-leopard]: http://ciaranwal.sh/2007/11/01/customising-colours-in-leopard-terminal
-[tc-snowleopard]: http://github.com/timmfin/terminalcolours
-[preview-ss]: http://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png
-[ss-anchor]: #screenshots
+> Here's a patch that automatically opens the quickfix window after
+> `:Ggrep`.
+
+This is a great example of why I recommend asking before patching.
+There are valid arguments to be made both for and against automatically
+opening the quickfix window.  Whenever I have to make an arbitrary
+decision like this, I ask what Vim would do.  And Vim does not open a
+quickfix window after `:grep`.
+
+Luckily, it's easy to implement the desired behavior without changing
+fugitive.vim.  The following autocommand will cause the quickfix window
+to open after any grep invocation:
+
+    autocmd QuickFixCmdPost *grep* cwindow
+
+## Self-Promotion
+
+Like fugitive.vim? Follow the repository on
+[GitHub](https://github.com/tpope/vim-fugitive) and vote for it on
+[vim.org](http://www.vim.org/scripts/script.php?script_id=2975).  And if
+you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
+[Twitter](http://twitter.com/tpope) and
+[GitHub](https://github.com/tpope).
+
+## License
+
+Copyright (c) Tim Pope.  Distributed under the same terms as Vim itself.
+See `:help license`.
