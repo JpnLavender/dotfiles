@@ -7,5 +7,13 @@ export EDITOR=vim
 set PATH ~/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1
 
-# viでもvimで開く
 eval (direnv hook fish)
+
+alias rm='rmtrash'
+
+alias l='la'
+
+alias t='touch'
+
+alias c='cd'
+
