@@ -1,5 +1,3 @@
-" カーソル行をハイライト
-set cursorline
 " カレントウィンドウにのみ罫線を引く
 augroup cch
   autocmd! cch
