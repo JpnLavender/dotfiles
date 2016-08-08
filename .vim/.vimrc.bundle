@@ -52,8 +52,6 @@ if dein#load_state(s:plugin_dir)
   call dein#add('tyru/open-browser.vim')
   call dein#add('vim-pandoc/vim-rmarkdown')
   call dein#add('kannokanno/previm')
-  "VimShell
-  call dein#add('Shougo/vimshell.vim.git')
   "確かMarkdownとかで他の言語が埋め込まれてる時に便利になるやつ
   call dein#add('Shougo/context_filetype.vim')
   "英単語を補完してくれるめっちゃ便利なやつ
