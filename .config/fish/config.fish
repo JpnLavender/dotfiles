@@ -1,6 +1,7 @@
 # echo "おこるよこれもう。cv:静流"
 
 export EDITOR=vim
+export PRODUCTION=true
 
 #Ruby(rbenv)
 #  set PATH ~/.rbenv/bin $PATH
@@ -16,4 +17,6 @@ alias l='la'
 alias t='touch'
 
 alias c='cd'
+
+alias r='ruby'
 
