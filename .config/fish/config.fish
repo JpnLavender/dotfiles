@@ -2,6 +2,7 @@
 
 export EDITOR=vim
 export PRODUCTION=true
+export GOPATH=$HOME/go_file 
 
 #Ruby(rbenv)
 #  set PATH ~/.rbenv/bin $PATH
