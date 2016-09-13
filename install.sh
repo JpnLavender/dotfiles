@@ -3,7 +3,6 @@
 if [ ! -e ~/.vim ]; then
     ln -s ~/dotfiles/.vim ~
     ln -s ~/dotfiles/.vim/colors/solarized.vim ~/.vim/colors
-    ln -s ~/dotfiles/.vim/bundle ~/.vim
     files=( basic bundle color indent key path plugin theme )
     for file in ${files[@]}; do
         ln -s ~/dotfiles/.vim/.vimrc.$file ~/.vim/.vimrc.$file
