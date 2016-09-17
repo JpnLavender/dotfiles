@@ -2,4 +2,4 @@ syntax enable
 set background=dark
 set t_Co=256
 syntax on
-colorscheme solarized
+colorscheme dracula
