@@ -19,3 +19,4 @@ alias c='cd'
 
 alias r='ruby'
 
+alias dl='~/Desktop/AllFile/Programming/youtube-dl/youtube_dl.sh'
