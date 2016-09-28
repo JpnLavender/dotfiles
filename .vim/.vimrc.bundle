@@ -82,6 +82,8 @@ if dein#load_state(s:plugin_dir)
   call dein#add('rizzatti/dash.vim')
   "F移動を連打可能に"
   call dein#add('rhysd/clever-f.vim')
+  "自動ペースト的にペーストでモードに
+  call dein#add('ConradIrwin/vim-bracketed-paste')
   "syntax
   call dein#add('hokaccha/vim-html5validator')
   call dein#add('othree/html5.vim')
