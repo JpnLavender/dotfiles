@@ -1,1 +1,0 @@
-/Users/roof/.config/fisherman/masenko/fish_right_prompt.fish
