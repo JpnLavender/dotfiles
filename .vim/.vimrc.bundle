@@ -23,23 +23,22 @@ if dein#load_state(s:plugin_dir)
 
   " ここからインストールするプラグインを書いていく
   call dein#add('Shougo/dein.vim')
-" 横のファイルディレクトリ表示の奴~~
-  call dein#add('scrooloose/nerdtree')
-" 下のステータスバーをかっこよくする
+  " 横のファイルディレクトリ表示の奴~~
+  " call dein#add('scrooloose/nerdtree')
+  " 下のステータスバーをかっこよくする
   call dein#add('itchyny/lightline.vim')
-" コメントアウトを簡単に
+  " コメントアウトを簡単に
   call dein#add('tomtom/tcomment_vim')
-" Ruby向けにendを自動挿入してくれる
+  " Ruby向けにendを自動挿入してくれる
   call dein#add('tpope/vim-endwise')
-" 括弧の自動挿入
+  " 括弧の自動挿入
   call dein#add('Townk/vim-autoclose')
-" カッコをつけたり消したりするのを簡単に
+  " カッコをつけたり消したりするのを簡単に
   call dein#add('tpope/vim-surround')
-" 補完機能
+  " 補完機能
   call dein#add('Shougo/neocomplete.vim')
-" Gitの差分チェック
+  " Gitの差分チェック
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-fugitive')
   "MarkDown書くようpluginたち
   call dein#add('plasticboy/vim-markdown')
   call dein#add('tyru/open-browser.vim')
@@ -47,8 +46,8 @@ if dein#load_state(s:plugin_dir)
   call dein#add('kannokanno/previm')
   "確かMarkdownとかで他の言語が埋め込まれてる時に便利になるやつ
   call dein#add('Shougo/context_filetype.vim')
-  " インデントに色を付けて見やすくする
-  " call dein#add('Yggdroot/indentLine')
+  " ファイルオープンを便利に
+  call dein#add('ctrlpvim/ctrlp.vim')
   "入力補助
   call dein#add('mattn/emmet-vim')
   "移動効率化
