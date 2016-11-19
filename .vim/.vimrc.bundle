@@ -24,7 +24,7 @@ if dein#load_state(s:plugin_dir)
   " ここからインストールするプラグインを書いていく
   call dein#add('Shougo/dein.vim')
   " 横のファイルディレクトリ表示の奴~~
-  " call dein#add('scrooloose/nerdtree')
+  call dein#add('scrooloose/nerdtree')
   " 下のステータスバーをかっこよくする
   call dein#add('itchyny/lightline.vim')
   " コメントアウトを簡単に
@@ -36,6 +36,8 @@ if dein#load_state(s:plugin_dir)
   " カッコをつけたり消したりするのを簡単に
   call dein#add('tpope/vim-surround')
   " 補完機能
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets.vim')
   call dein#add('Shougo/neocomplete.vim')
   " Gitの差分チェック
   call dein#add('airblade/vim-gitgutter')
