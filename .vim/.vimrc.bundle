@@ -36,10 +36,8 @@ if dein#load_state(s:plugin_dir)
   " カッコをつけたり消したりするのを簡単に
   call dein#add('tpope/vim-surround')
   " 補完機能
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets.vim')
-  call dein#add('Shougo/neocomplete.vim')
-  " Gitの差分チェック
+  call dein#add('Shougo/neocomplete')
+  " Gitの差分チェッ
   call dein#add('airblade/vim-gitgutter')
   "MarkDown書くようpluginたち
   call dein#add('plasticboy/vim-markdown')
@@ -48,26 +46,20 @@ if dein#load_state(s:plugin_dir)
   call dein#add('kannokanno/previm')
   "確かMarkdownとかで他の言語が埋め込まれてる時に便利になるやつ
   call dein#add('Shougo/context_filetype.vim')
-  " ファイルオープンを便利に
-  call dein#add('ctrlpvim/ctrlp.vim')
   "入力補助
   call dein#add('mattn/emmet-vim')
   "移動効率化
   call dein#add('deris/vim-gothrough-jk')
-  "CoffeeScript
-  call dein#add('kchmck/vim-coffee-script')
-  "HTML5のシンタクスチェック
-  call dein#add('hokaccha/vim-html5validator')
   "tmux<->vim間をシームレスに"
   call dein#add('christoomey/vim-tmux-navigator')
   "quickrun"
   call dein#add('thinca/vim-quickrun')
-  "辞書"
-  call dein#add('rizzatti/dash.vim')
   "F移動を連打可能に"
   call dein#add('rhysd/clever-f.vim')
   "ペースト時に自動でペーストモードに
   call dein#add('ConradIrwin/vim-bracketed-paste')
+  "Switch.vim
+  call dein#add('AndrewRadev/switch.vim')
   "syntax
   call dein#add('hokaccha/vim-html5validator')
   call dein#add('elixir-lang/vim-elixir')
@@ -77,7 +69,6 @@ if dein#load_state(s:plugin_dir)
   call dein#add('nikvdp/ejs-syntax')
   call dein#add('rhysd/vim-crystal')
   call dein#add('AtsushiM/sass-compile.vim')
-  call dein#add('AndrewRadev/switch.vim')
   call dein#add('jason0x43/vim-js-indent')
   call dein#add('tpope/vim-markdown')
 
