@@ -35,7 +35,7 @@ nnoremap b :bmarks<space>
 nnoremap B :hb<space>
 
 "履歴
-nnoremap H :history!<Space>
+nnoremap <C-h> :history!<Space>
 
 " undo一覧から開く
 nnoremap U :undo<Space>
