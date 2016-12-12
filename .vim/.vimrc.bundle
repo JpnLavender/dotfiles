@@ -71,6 +71,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('AtsushiM/sass-compile.vim')
   call dein#add('jason0x43/vim-js-indent')
   call dein#add('tpope/vim-markdown')
+  call dein#add('fatih/vim-go')
 
   " インストール後ビルドする場合
   call dein#add('Shougo/vimproc.vim', {
