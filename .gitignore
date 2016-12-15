@@ -3,3 +3,7 @@
 .vimperator/info/
 
 .config/direnv/
+
+*history
+
+.viminfo
