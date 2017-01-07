@@ -37,6 +37,8 @@ if dein#load_state(s:plugin_dir)
   call dein#add('tpope/vim-surround')
   " 補完機能
   call dein#add('Shougo/neocomplete')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
   " Gitの差分チェッ
   call dein#add('airblade/vim-gitgutter')
   "MarkDown書くようpluginたち
