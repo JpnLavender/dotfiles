@@ -61,7 +61,7 @@ set editor='~/bin/mvim -f'
 set hintchars=asdfghjklqwertyuiozxcvbnm
 
 "visualモード
-nnormap <C-c> c
+nnoremap <C-v> c
 
 " ファイルダウンロード完了時のウイルススキャン機能オフ
 set! browser.download.manager.scanWhenDone=true
@@ -82,10 +82,10 @@ style -name commandline-ime chrome://* #liberator-commandline-command input { im
 javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js',  {__proto__: this});
 javascript <<EOF
 liberator.globalVariables.hBookmark_shortcuts = {
-    hintsAdd     : '+',
-    hintsComment : '=',
-    add          : ['+'],
-    comment      : ['='],
+hintsAdd     : '+',
+							 hintsComment : '=',
+							 add          : ['+'],
+							 comment      : ['='],
 };
 EOF
 
@@ -127,9 +127,6 @@ nnoremap h H
 " p <-> P
 nnoremap p P
 nnoremap P p
-
-" c -> C-a
-nnoremap <C-a> c
 
 " newtab
 nnoremap <C-g> :tabopen<Space>google<Space>
@@ -198,38 +195,26 @@ ignorekeys add reblogen\\.com/dashboard -except g,t,T,d
 " migemo
 "set hintmatching=custom
 
-" ,c で今見てるタブをChromeで開く
-js <<EOM
-mappings.addUserMap([modes.NORMAL,modes.VISUAL],[',c'], 'Open URL In Chrome',
-  function(){
-    // macの場合
-    io.system("open -a '/Applications/Google\ Chrome.app' --args '" + buffer.URL + "'");
-  },{
-    rhs: 'Open URL In Chrome'
-  }
-);
-EOM
-
 "プラグイン設定
 " Greasemonkey 0.9.xでwindowを共通にする
 javascript <<EOF
 /*autocommands.add('VimperatorEnter', '.*',
-  function() {
-    let gm = Components.classes['@greasemonkey.mozdev.org/greasemonkey-service;1'];
-    if (gm) {
-      gm = gm.getService().wrappedJSObject;
-      if (gm.injectScripts.toSource().search('sharedWindow') == -1) {
-          gm.injectScripts = liberator.eval(
-              gm.injectScripts.toSource()
-                  .replace(/(?=var firebugConsole)/,
-                          'var sharedWindow = {};' +
-                          'sharedWindow.window = sharedWindow;' +
-                          'sharedWindow.__proto__ = new XPCNativeWrapper(unsafeContentWin);')
-                  .replace(/(?=sandbox\.__proto__)/, ' sandbox.window = sharedWindow;'),
-              gm.injectScripts);
-      }
-    }
-  });*/
+	function() {
+	let gm = Components.classes['@greasemonkey.mozdev.org/greasemonkey-service;1'];
+	if (gm) {
+	gm = gm.getService().wrappedJSObject;
+	if (gm.injectScripts.toSource().search('sharedWindow') == -1) {
+	gm.injectScripts = liberator.eval(
+	gm.injectScripts.toSource()
+	.replace(/(?=var firebugConsole)/,
+	'var sharedWindow = {};' +
+	'sharedWindow.window = sharedWindow;' +
+	'sharedWindow.__proto__ = new XPCNativeWrapper(unsafeContentWin);')
+	.replace(/(?=sandbox\.__proto__)/, ' sandbox.window = sharedWindow;'),
+	gm.injectScripts);
+	}
+	}
+	});*/
 EOF
 
 javascript <<EOF
