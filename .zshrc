@@ -50,10 +50,19 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
-# キーバインディングをvim風
-bindkey -v
 
 DEFAULT_USER=$(whoami)
+
+#===環境変数など==================================================
+export EDITOR=vim
+export GOPATH=$HOME/go_files
+
+
+#===エイリアス==================================================
+alias rm='rm -rf'
+alias dc='docker-compose'
+alias  d='docker'
+alias github='open http://github.com/JpnLavender'
 
 #===function==================================================
 _register_keycommand() {
@@ -136,9 +145,6 @@ peco_history() {
 _register_keycommand '^r' peco_history
 
 #===時間のかかるコマンドを通知==================================================
-export SLACK_USER_NAME='irimamekun'
-export SLACK_WEBHOOK_URL='https://hooks.slack.com/services/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'
-export SLACK_NOTIF_THRESHOLD=10
 
 if [ -z "${SLACK_WEBHOOK_URL+x}" ]; then
   echo "SLACK_WEBHOOK_URL is empty !!!"
