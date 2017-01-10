@@ -55,6 +55,86 @@ bindkey -v
 
 DEFAULT_USER=$(whoami)
 
+#===function==================================================
+_register_keycommand() {
+  zle -N $2
+  bindkey "$1" $2
+}
+
+_buffer_replace() {
+  BUFFER="$(cat)"
+  CURSOR=$#BUFFER
+}
+
+_peco_select() {
+  local tx="$(cat)"
+  local query="$1"
+
+  if [ "$tx" = '' ]; then
+    tx=' '
+    query='(nothing)'
+  fi
+
+  peco --query "$query" <<< "$tx"
+}
+
+_reverse() {
+  if which tac > /dev/null; then
+    tac <<< $(cat)
+  else
+    tail -r <<< $(cat)
+  fi
+}
+
+_is_git_repo() {
+  git rev-parse --is-inside-work-tree > /dev/null 2>&1
+}
+
+
+# ==== peco project ================================================================
+peco_ghq_list() {
+  ghq list -p \
+    | _peco_select \
+    | {
+        local repo=$(cat)
+        if [ -n "$repo" ]; then
+          _buffer_replace <<< "cd $repo"
+          zle accept-line
+        fi
+      }
+}
+
+_register_keycommand '^]' peco_ghq_list
+
+
+# ==== tmux attach ================================================================
+tmux_attach() {
+  tmux list-sessions \
+    | _peco_select \
+    | awk -F: '{ print $1 }' \
+    | {
+        local session=$(cat)
+        if [ -n "$session" ]; then
+          title $session
+          _buffer_replace <<< "tmux attach -t $session"
+          zle accept-line
+        fi
+      }
+}
+
+_register_keycommand '^@' tmux_attach
+
+
+# ==== peco history ===============================================================
+peco_history() {
+  \history -n 1 \
+    | _reverse \
+    | _peco_select "$LBUFFER" \
+    | _buffer_replace
+}
+
+_register_keycommand '^r' peco_history
+
 #===時間のかかるコマンドを通知==================================================
 export SLACK_USER_NAME='irimamekun'
 export SLACK_WEBHOOK_URL='https://hooks.slack.com/services/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'
@@ -83,7 +163,7 @@ function notify_precmd {
 {
   "username": "command result",
   "icon_emoji": "$notif_icon",
-  "text": "<@$SLACK_USER_NAME>",
+  "text": "<@$SLACK_USER_NAME>\n $notif_title",
   "attachments": [
     {
       "color": "$notif_color",
