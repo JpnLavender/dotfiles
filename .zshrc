@@ -23,7 +23,7 @@ zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAU
 
 #===基本設定==================================================
 #プラグインの読み込み
-plugins=(git zsh-completions)
+plugins=(git zsh-completions zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
 # 文字コードの指定
 export LANG=ja_JP.UTF-8
 # 日本語ファイル名を表示可能にする
@@ -143,6 +143,22 @@ peco_history() {
 }
 
 _register_keycommand '^r' peco_history
+
+# ==== docker ps kill ===============================================================
+
+docker_kill_ps(){
+    docker stop $(docker ps -aq) && docker rm $(docker ps -aq )
+    docker ps -a
+}
+
+docker_kill_img(){
+    docker rmi $(docker images -qa)
+    docker images -a
+}
+
+docker_kill(){
+    docker_kill_ps && docker_kill_img
+}
 
 #===時間のかかるコマンドを通知==================================================
 
