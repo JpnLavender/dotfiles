@@ -4,8 +4,8 @@ POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs rbenv)
 
-export ZSH=/Users/iyapih/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+#プラグインの読み込み
+plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
 
 # 補完関数の表示を強化する
 fpath=(~/.oh-my-zsh/plugins/zsh-completions/src $fpath)
@@ -19,8 +19,6 @@ zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 
-#プラグインの読み込み
-plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
 # 文字コードの指定
 export LANG=ja_JP.UTF-8
 # 日本語ファイル名を表示可能にする
