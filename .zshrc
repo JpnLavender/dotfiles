@@ -57,6 +57,7 @@ DEFAULT_USER=$(whoami)
 export EDITOR=vim
 export GOPATH=$HOME/go_files
 
+eval "$(direnv hook zsh)"
 
 #===エイリアス==================================================
 alias rm='rm -rf'
