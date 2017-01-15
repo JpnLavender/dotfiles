@@ -8,12 +8,13 @@ if [ ! -e ~/.vim ]; then
         ln -s ~/dotfiles/.vim/.vimrc.$file ~/.vim/.vimrc.$file
     done
 fi
+[ -e ~/.zshrc ]             || ln -s ~/dotfiles/.zshrc ~/.zshrc
 [ -e ~/.config ]            || ln -s ~/dotfiles/.config ~/.config
-[ -e ~/.tmux.conf ]         || ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 [ -e ~/.viminfo ]           || ln -s ~/dotfiles/.viminfo ~/.viminfo
+[ -e ~/.tmux.conf ]         || ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 [ -e ~/.vimperator ]        || ln -s ~/dotfiles/.vimperator ~/.vimperator
 [ -e ~/.vimperatorrc ]      || ln -s ~/dotfiles/.vimperatorrc ~/.vimperatorrc
-[ -e ~/.zshrc ]             || ln -s ~/dotfiles/.zshrc ~/.zshrc
+[ -e  ~/.tmux-powerline ]   || ln -s ~/dotfiles/tmux-powerline/ ~/tmux-powerline
 [ -e  ~/.tmux/plugins/tpm ] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
