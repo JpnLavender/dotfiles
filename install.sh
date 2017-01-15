@@ -28,8 +28,6 @@ case ${OSTYPE} in
         #fish install
         shell_path=`which fish`
         chsh -s $shell_path
-        #ruby install
-        rbenv install 2.3.1
         ;;
     linux*)
         #System install
