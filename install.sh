@@ -31,7 +31,8 @@ rm -rf ~/tmux-powerline/themes/default.sh
 
 #------------------ install for oh-my-zsh ------------------
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-[ -e ~/.oh-my-zsh/custom/themes/powerlevel9k ] || git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+[ -e ~/.oh-my-zsh/custom/themes/powerlevel9k ]  || git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+[ -e ~/.oh-my-zsh/plugins/zsh-autosuggestions ] || git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
 
 #------------------ install for packages ------------------
 case ${OSTYPE} in
