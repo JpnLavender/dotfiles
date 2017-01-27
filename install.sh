@@ -33,6 +33,8 @@ case ${OSTYPE} in
             brew brewdle
         else
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            brew tap homebrew/brewdler
+            brew brewdle
         fi
         shell_path=`which zsh`
         chsh -s $shell_path
