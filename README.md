@@ -1,10 +1,7 @@
 #dotfiles
 
-##install
+## How to Use
 
-```shell
-$ cd 
-$ git clone https://github.com/JpnLavender/dotfiles.git dotfiles
-$ cd dotfiles/ 
-$ ./install.sh
+```bash
+$ git clone https://github.com/JpnLavender/dotfiles.git ~/dotfiles && cd $_ && ./install.sh
 ```
