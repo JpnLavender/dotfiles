@@ -20,6 +20,7 @@ fi
 
 [ -e  ~/.tmux-powerline ]                      || git clone https://github.com/erikw/tmux-powerline.git ~/tmux-powerline
 [ -e  ~/.tmux/plugins/tpm ]                    || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+rm -rf ~/tmux-powerline/themes/default.sh
 [ -e ~/.tmux.conf ]                            || ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 [ -e ~/.vimperator ]                           || ln -s ~/dotfiles/.vimperator ~/.vimperator
 [ -e ~/.vimperatorrc ]                         || ln -s ~/dotfiles/.vimperatorrc ~/.vimperatorrc
