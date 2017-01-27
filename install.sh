@@ -1,4 +1,6 @@
 #! /bin/bash
+
+#------------------ link configfiles ------------------
 [ -e ~/.vimrc ] || ln -fs ~/dotfiles/.vimrc ~/.vimrc
 if [ ! -e ~/.vim ]; then
     ln -s ~/dotfiles/.vim ~
@@ -26,11 +28,16 @@ rm -rf ~/tmux-powerline/themes/default.sh
 [ -e ~/.vimperatorrc ]                         || ln -fs ~/dotfiles/.vimperatorrc ~/.vimperatorrc
 [ -e ~/tmux-powerline/themes/default.sh ]      || ln -fs ~/dotfiles/default.sh ~/tmux-powerline/themes/default.sh
 
+
+#------------------ install for oh-my-zsh ------------------
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+#------------------ install for packages ------------------
 case ${OSTYPE} in
     darwin*)
         if [ ! $(which brew) ]; then
             brew tap homebrew/brewdler
-            brew brewdle
+            brew bundle
         else
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
             brew tap homebrew/brewdler
