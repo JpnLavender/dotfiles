@@ -17,11 +17,6 @@ set ttyfast
 let g:solarized_termtrans=1
 set background=dark
 
-if has("gui")
-  set transparency=20
-  set guifont=Ricty\ Regular\ for\ Powerline:h15
-endif
-
 let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
 let g:buftabs_active_highlight_group="Visual"

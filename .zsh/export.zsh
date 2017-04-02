@@ -1,14 +1,25 @@
 export EDITOR=vim
-export GOPATH=$HOME/go_files
+
+export GOPATH=$HOME/.go_files
+export PATH="$GOPATH/bin:$PATH"
+
+export SCALA_HOME=/path/to/scala_dir
+export PATH=$PATH:$SCALA_HOME/bin
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export IDEA_JDK=$JAVA_HOME
 
 eval "$(direnv hook zsh)"
 
-export ZSH=/Users/iyapih/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 export TERM="xterm-256color"
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:~/.local/bin
+if [ -d $HOME/.anyenv ] ; then
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init - zsh)"
+fi
 
-powerline-daemon -q
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+export SLACK_WEBHOOKS_URL="https://hooks.slack.com/services/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"
+export SLAXK_USER_NAME="irimamekun"

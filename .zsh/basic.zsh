@@ -1,8 +1,8 @@
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='awesome-patched'
+ZSH_THEME="bureau" #"powerlevel9k/powerlevel9k"
+#POWERLEVEL9K_MODE='awesome-patched'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs rbenv)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs rbenv)
 
 #プラグインの読み込み
 plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
@@ -19,6 +19,10 @@ zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 
+# 補完候補を一覧で表示する
+setopt auto_list
+# 補完キー連打で候補順に自動で補完する
+setopt auto_menu
 # 文字コードの指定
 export LANG=ja_JP.UTF-8
 # 日本語ファイル名を表示可能にする
@@ -45,8 +49,9 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
+# 履歴をすぐに追加する（通常はシェル終了時）
+setopt inc_append_history
 
 DEFAULT_USER=$(whoami)
 
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-

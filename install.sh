@@ -1,56 +1,55 @@
 #! /bin/bash
 
-#------------------ link configfiles ------------------
-[ -e ~/.vimrc ] || ln -fs ~/dotfiles/.vimrc ~/.vimrc
-if [ ! -e ~/.vim ]; then
-    ln -s ~/dotfiles/.vim ~
-    ln -s ~/dotfiles/.vim/colors/solarized.vim ~/.vim/colors
-    files=( basic bundle color indent key path plugin theme )
-    for file in ${files[@]}; do
-        [ -e ~/.vim/.vimrc.$file ] || ln -s ~/dotfiles/.vim/.vimrc.$file ~/.vim/.vimrc.$file
+copy_otherfile
+copy_zshrc
+copy_vimrc
+install_package
+change_default_shell
+anyenv_install
+
+#othefile
+function copy_otherfile{
+    for filename in $(ls -a);do
+        cp --backup $filename $HOME
     done
-fi
+}
 
-[ -e ~/.zshrc ] || ln -fs ~/dotfiles/.zshrc ~/.zshrc
-if [ ! -e ~/.zsh ]; then
-    ln -s ~/dotfiles/.zsh ~
-    files=( alias basic export function )
-    for file in ${files[@]}; do
-        [ -e ~/.zsh/$file.zsh ] || ln -s ~/dotfiles/.zsh/$file.zsh ~/.zsh/$file.zsh
+#zshrc
+function copy_zshrc {
+    mkdir $HOME/.zsh && cd &_
+    for filename in alias basic export function ; do
+        cp --backup $filename.zsh
     done
-fi
+}
 
-[ -e ~/.tmux-powerline ]                  || git clone https://github.com/erikw/tmux-powerline.git ~/tmux-powerline
-[ -e ~/.tmux/plugins/tpm ]                || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-rm -rf ~/tmux-powerline/themes/default.sh
-[ -e ~/.tmux.conf ]                       || ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-[ -e ~/.vimperator ]                      || ln -s ~/dotfiles/.vimperator ~/.vimperator
-[ -e ~/.vimperatorrc ]                    || ln -s ~/dotfiles/.vimperatorrc ~/.vimperatorrc
-[ -e ~/tmux-powerline/themes/default.sh ] || ln -s ~/dotfiles/default.sh ~/tmux-powerline/themes/default.sh
+#vimrc
+function copy_vimrc {
+    mkdir $HOME/.vim && cd &_
+    for filename in basic bundle color indent key path plugin theme; do
+        cp --backup .vimrc.$filename
+    done
+}
 
+#install-package
+function install_package{
+    for package in zsh vim git; do
+        sudo apt-get install $package
+    done
+}
 
-#------------------ install for oh-my-zsh ------------------
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-[ -e ~/.oh-my-zsh/custom/themes/powerlevel9k ]  || git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-[ -e ~/.oh-my-zsh/plugins/zsh-autosuggestions ] || git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
+#default-change-shell
+function change_default_shell{
+    echo "デフォルトShellをZshに変更します"
+    zsh_path=$(which zsh)
+    chsh -s $zsh_path
+}
 
-#------------------ install for packages ------------------
-case ${OSTYPE} in
-    darwin*)
-        if [ -e $(which brew) ]; then
-            brew tap homebrew/brewdler
-            brew bundle
-        else
-            /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-            brew tap homebrew/brewdler
-            brew bundle
-        fi
-        shell_path=`which zsh`
-        chsh -s $shell_path
-        ;;
-    linux*)
-        sudo yum install -y tig fish htop tmux vim zsh
-        shell_path=`which zsh`
-        sudo chsh -s $shell_path
-        ;;
-esac
+#anyenv-install & rbenv
+function anyenv_install{
+    git clone https://github.com/riywo/anyenv ~/.anyenv
+    anyenv install rbenv
+    exec $SHELL -l
+    rbenv install 2.4.0
+    rbenv rehash
+    rbenv global 2.4.0
+}

@@ -18,7 +18,7 @@ set gui=nonavigation
 
 " ブラウザタイトルの変更
 " Firefox デフォルトは 「Mozilla - Firefox」、vimperatorを入れると「vimperator」
-"set titlestring=Alpdaca - MacBookPro
+set titlestring=黒髪ロング清楚系ヤンデレ巨乳はイイゾ
 
 " カラースキーム
 "colorscheme onedark
@@ -31,6 +31,7 @@ hi HintElem color: gray; background-color: #a1e4e6;
 hi HintActive color: black; background-color: #ff8700;
 
 "ブックマーク
+nnoremap <C-b> :bmark<Enter>
 nnoremap b :bmarks<space>
 nnoremap B :hb<space>
 
@@ -129,8 +130,7 @@ nnoremap p P
 nnoremap P p
 
 " newtab
-nnoremap <C-g> :tabopen<Space>google<Space>
-nnoremap <C-a> :tabopen<Space>amazon<Space>
+nnoremap <C-g> :tabopen<Space>https://github.com<Enter>
 nnoremap <C-w> :tabopen<Space>wikipedia<Space>
 nnoremap <C-t> :tabopen<Space>https://tweetdeck.twitter.com/<Enter>
 nnoremap <C-s> :tabopen<Space>https://slack.com/<Enter>
