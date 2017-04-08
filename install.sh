@@ -11,7 +11,7 @@ anyenv_install
 
 #othefile
 function copy_otherfile{
-    for filename in $(ls -a);do
+    for filename in .pryrc .tmux.conf .vimperatorrc .vimrc .zshrc; do
         cp --backup $filename $HOME
     done
 }
