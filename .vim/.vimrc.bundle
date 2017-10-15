@@ -41,11 +41,6 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/neosnippet-snippets')
   " Gitの差分チェッ
   call dein#add('airblade/vim-gitgutter')
-  "MarkDown書くようpluginたち
-  call dein#add('plasticboy/vim-markdown')
-  call dein#add('tyru/open-browser.vim')
-  call dein#add('vim-pandoc/vim-rmarkdown')
-  call dein#add('kannokanno/previm')
   "確かMarkdownとかで他の言語が埋め込まれてる時に便利になるやつ
   call dein#add('Shougo/context_filetype.vim')
   "入力補助
