@@ -7,7 +7,7 @@ augroup PluginInstall
 augroup END
 
 " 各プラグインをインストールするディレクトリ
-let s:plugin_dir = expand('~/.vim/bundle/')
+let s:plugin_dir = expand('$HOME/.vim/bundle/')
 " dein.vimをインストールするディレクトリをランタイムパスへ追加
 let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath+=' . s:dein_dir
@@ -63,6 +63,7 @@ if dein#load_state(s:plugin_dir)
   "Switch.vim
   call dein#add('AndrewRadev/switch.vim')
   "syntax
+  call dein#add('posva/vim-vue')
   call dein#add('hokaccha/vim-html5validator')
   call dein#add('elixir-lang/vim-elixir')
   call dein#add('othree/html5.vim')
