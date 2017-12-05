@@ -14,7 +14,6 @@ function copy_zshrc {
         cp --backup $filename.zsh
         ln $HOME/dotfiles/$filename.zsh $HOME/.zsh/$filename
     done
-    done
 }
 
 function install_oh_my_zsh {
