@@ -13,7 +13,7 @@ function copy_zshrc {
     echo "------------------------------ setup zsh ------------------------------"
     mkdir $HOME/.zsh
     for filename in alias basic export function ; do
-        ln $HOME/dotfiles/$filename.zsh $HOME/.zsh/$filename
+        ln $HOME/dotfiles/.zsh/$filename.zsh $HOME/.zsh/$filename
     done
 }
 
@@ -21,7 +21,7 @@ function install_oh_my_zsh {
     # install oh-my-zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     # install oh-my-zsh plugin to zsh-autosuggestions
-    git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
 }
 
 #install-tmux-powerline
@@ -41,9 +41,9 @@ function install_tmux_powerline {
 #vimrc
 function copy_vimrc {
     echo "------------------------------ setup vim ------------------------------"
-    mkdir $HOME/.vim
+    mkdir -p $HOME/.vim/colors
     for filename in basic bundle color indent key path plugin theme; do
-        ln $HOME/dotfiles/.vimrc.$filename $HOME/.zsh/.vimrc.$filename
+        ln $HOME/dotfiles/.vim/.vimrc.$filename $HOME/.zsh/.vimrc.$filename
     done
 }
 
