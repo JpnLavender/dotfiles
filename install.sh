@@ -45,7 +45,7 @@ function copy_vimrc {
 }
 
 #install-package
-function install_package{
+function install_package {
     for package in zsh vim git tmux tig; do
         sudo apt-get install $package
     done
