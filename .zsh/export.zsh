@@ -21,5 +21,5 @@ if [ -d $HOME/.anyenv ] ; then
     eval "$(anyenv init - zsh)"
 fi
 
-export SLACK_WEBHOOKS_URL="https://hooks.slack.com/services/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"
-export SLAXK_USER_NAME="irimamekun"
+export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/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"
+export SLACK_USER_NAME="irimamekun"

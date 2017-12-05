@@ -1,26 +1,19 @@
 #! /bin/bash
 
-copy_otherfile
-copy_zshrc
-install_oh_my_zsh
-install_tmux_powerline
-copy_vimrc
-install_package
-change_default_shell
-anyenv_install
-
 #othefile
-function copy_otherfile{
+function copy_otherfile {
     for filename in .pryrc .tmux.conf .vimperatorrc .vimrc .zshrc; do
-        cp --backup $filename $HOME
+        ln $HOME/dotfiles/$filename $HOME/$filename
     done
 }
 
 #zshrc
 function copy_zshrc {
-    mkdir $HOME/.zsh && cd &_
+    mkdir $HOME/.zsh
     for filename in alias basic export function ; do
         cp --backup $filename.zsh
+        ln $HOME/dotfiles/$filename.zsh $HOME/.zsh/$filename
+    done
     done
 }
 
@@ -48,29 +41,30 @@ function install_tmux_powerline {
 function copy_vimrc {
     mkdir $HOME/.vim && cd &_
     for filename in basic bundle color indent key path plugin theme; do
-        cp --backup .vimrc.$filename
+        ln $HOME/dotfiles/.vimrc$filename $HOME/.zsh/.vimrc.$filename
     done
 }
 
 #install-package
 function install_package{
-    for package in zsh vim git; do
+    for package in zsh vim git tmux tig; do
         sudo apt-get install $package
     done
 }
 
 #default-change-shell
-function change_default_shell{
+function change_default_shell {
     echo "デフォルトShellをZshに変更します"
     zsh_path=$(which zsh)
     chsh -s $zsh_path
 }
 
 #anyenv-install & rbenv
-function anyenv_install{
+function anyenv_install {
     # install anyenv
     git clone https://github.com/riywo/anyenv ~/.anyenv
     # anyenv using install rbrnv
+    exec $SHELL -l
     anyenv install rbenv
     exec $SHELL -l
     # install ruby 2.4.0
@@ -79,3 +73,12 @@ function anyenv_install{
     # set global ruby version
     rbenv global 2.4.0
 }
+
+copy_otherfile
+copy_zshrc
+install_oh_my_zsh
+install_tmux_powerline
+copy_vimrc
+install_package
+change_default_shell
+anyenv_install
