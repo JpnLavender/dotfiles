@@ -2,6 +2,7 @@
 
 #othefile
 function copy_otherfile {
+    echo "------------------------------ setup setting files ------------------------------"
     for filename in .pryrc .tmux.conf .vimperatorrc .vimrc .zshrc; do
         ln $HOME/dotfiles/$filename $HOME/$filename
     done
@@ -9,9 +10,9 @@ function copy_otherfile {
 
 #zshrc
 function copy_zshrc {
+    echo "------------------------------ setup zsh ------------------------------"
     mkdir $HOME/.zsh
     for filename in alias basic export function ; do
-        cp --backup $filename.zsh
         ln $HOME/dotfiles/$filename.zsh $HOME/.zsh/$filename
     done
 }
@@ -26,6 +27,7 @@ function install_oh_my_zsh {
 #install-tmux-powerline
 
 function install_tmux_powerline {
+    echo "------------------------------ setup tmux_powerline ------------------------------"
     #Download tmux powerline
     git clone https://github.com/erikw/tmux-powerline.git ~/tmux-powerline
     #Download tmux-plugin management
@@ -38,14 +40,16 @@ function install_tmux_powerline {
 
 #vimrc
 function copy_vimrc {
-    mkdir $HOME/.vim && cd &_
+    echo "------------------------------ setup vim ------------------------------"
+    mkdir $HOME/.vim
     for filename in basic bundle color indent key path plugin theme; do
-        ln $HOME/dotfiles/.vimrc$filename $HOME/.zsh/.vimrc.$filename
+        ln $HOME/dotfiles/.vimrc.$filename $HOME/.zsh/.vimrc.$filename
     done
 }
 
 #install-package
 function install_package {
+    echo "------------------------------ install package ------------------------------"
     for package in zsh vim git tmux tig; do
         sudo apt-get install $package
     done
@@ -60,6 +64,7 @@ function change_default_shell {
 
 #anyenv-install & rbenv
 function anyenv_install {
+    echo "------------------------------ install anyenv ------------------------------"
     # install anyenv
     git clone https://github.com/riywo/anyenv ~/.anyenv
     # anyenv using install rbrnv
