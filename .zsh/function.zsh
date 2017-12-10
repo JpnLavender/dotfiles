@@ -48,6 +48,23 @@ peco_ghq_list() {
 
 _register_keycommand '^]' peco_ghq_list
 
+function peco-z-search
+{
+  which peco z > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Please install peco and z"
+    return 1
+  fi
+  local res=$(z | sort -rn | cut -c 12- | peco)
+  if [ -n "$res" ]; then
+    BUFFER+="cd $res"
+    zle accept-line
+  else
+    return 1
+  fi
+}
+zle -N peco-z-search
+bindkey '^f' peco-z-search
 
 # ==== tmux attach ================================================================
 tmux_attach() {
