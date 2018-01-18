@@ -13,7 +13,7 @@ function copy_zshrc {
     echo "------------------------------ setup zsh ------------------------------"
     mkdir $HOME/.zsh
     for filename in alias basic export function ; do
-        ln $HOME/dotfiles/.zsh/$filename.zsh $HOME/.zsh/$filename
+        ln $HOME/dotfiles/.zsh/$filename.zsh $HOME/.zsh/$filename.zsh
     done
 }
 
@@ -42,8 +42,9 @@ function install_tmux_powerline {
 function copy_vimrc {
     echo "------------------------------ setup vim ------------------------------"
     mkdir -p $HOME/.vim/colors
+    cp $HOME/dotfiles/.vim/colors/solarized.vim $HOME/.vim/colors/solarized.vim
     for filename in basic bundle color indent key path plugin theme; do
-        ln $HOME/dotfiles/.vim/.vimrc.$filename $HOME/.zsh/.vimrc.$filename
+        ln $HOME/dotfiles/.vim/.vimrc.$filename $HOME/.vim/.vimrc.$filename
     done
 }
 
