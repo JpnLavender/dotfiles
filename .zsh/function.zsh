@@ -49,23 +49,22 @@ peco_ghq_list() {
 _register_keycommand '^]' peco_ghq_list
 
 
-# ==== tmux attach ================================================================
-tmux_attach() {
-  tmux list-sessions \
-    | _peco_select \
-    | awk -F: '{ print $1 }' \
-    | {
-        local session=$(cat)
-        if [ -n "$session" ]; then
-          title $session
-          _buffer_replace <<< "tmux attach -t $session"
-          zle accept-line
-        fi
-      }
+# ==== git branch ================================================================
+git_branch() {
+    git branch -a \
+        | peco --prompt "GIT BRANCH>" \
+        | head -n 1 \
+        | sed -e "s/^\*\s*//g" \
+        | {
+            local repo=$(cat)
+            if [ -n "$repo" ]; then
+                _buffer_replace <<< "git checkout $repo"
+                zle accept-line
+            fi
+        }
 }
 
-_register_keycommand '^@' tmux_attach
-
+_register_keycommand '^b' git_branch
 
 # ==== peco history ===============================================================
 peco_history() {
