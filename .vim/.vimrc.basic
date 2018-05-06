@@ -2,6 +2,10 @@
 "設定
 """"""""""""""""""""""""""""""
 
+set encoding=utf-8
+" set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+" set fileformats=unix,dos,mac
+
 "color設定(tmux起動時の表示バグ回避
 let g:solarized_termtrans=1
 set t_ut=

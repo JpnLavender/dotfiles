@@ -1,8 +1,8 @@
-ZSH_THEME="bureau" #"powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-patched'
 
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs rbenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs public_ip rbenv)
 
 #プラグインの読み込み
 plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
