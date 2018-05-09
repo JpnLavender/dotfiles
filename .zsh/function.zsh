@@ -64,7 +64,7 @@ function peco-z-search
   fi
 }
 zle -N peco-z-search
-bindkey '^f' peco-z-search
+bindkey '^h' peco-z-search
 
 # ==== git branch ================================================================
 git_branch() {

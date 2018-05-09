@@ -1,6 +1,7 @@
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-patched'
 
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs public_ip rbenv)
 
