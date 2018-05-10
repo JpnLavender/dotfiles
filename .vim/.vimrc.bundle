@@ -23,8 +23,6 @@ if dein#load_state(s:plugin_dir)
 
   " ここからインストールするプラグインを書いていく
   call dein#add('Shougo/dein.vim')
-  " 横のファイルディレクトリ表示の奴~~
-  call dein#add('scrooloose/nerdtree')
   " 下のステータスバーをかっこよくする
   call dein#add('itchyny/lightline.vim')
   " コメントアウトを簡単に
@@ -57,8 +55,12 @@ if dein#load_state(s:plugin_dir)
   call dein#add('ConradIrwin/vim-bracketed-paste')
   "Switch.vim
   call dein#add('AndrewRadev/switch.vim')
+  " Unit...
+  call dein#add('Shougo/unite.vim')
+
   "VimからGitを操作
   call dein#add('tpope/vim-fugitive')
+  call dein#add('kmnk/vim-unite-giti')
   "syntax
   call dein#add('posva/vim-vue')
   call dein#add('hokaccha/vim-html5validator')
