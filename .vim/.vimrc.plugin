@@ -80,7 +80,10 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+""""""""""""""""""""""""""""""
 " lightline.vim
+""""""""""""""""""""""""""""""
+
 let g:mline_bufhist_enable = 1
 set laststatus=2
 command! Btoggle :let g:mline_bufhist_enable = g:mline_bufhist_enable ? 0 : 1 | :redrawstatus!
@@ -348,11 +351,27 @@ augroup MyXML
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
+""""""""""""""""""""""""""""""
+" NeoSnippet "
+""""""""""""""""""""""""""""""
+let g:neosnippet#snippets_directory='~/.vim/NeoSnippets/'
+""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""
+" go-vim "
+""""""""""""""""""""""""""""""
+runtime.Gosched()
+autocmd FileType qf wincmd J
+""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
 " Unite "
 """"""""""""""""""""""""""""""
+
+autocmd QuickFixCmdPost *grep* cwindow
+
+" ステータス行に現在のgitブランチを表示する
+set statusline+=%{fugitive#statusline()}"
 
 "unite prefix key.
 nnoremap [unite] <Nop>

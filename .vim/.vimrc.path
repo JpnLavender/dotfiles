@@ -4,5 +4,3 @@ let $PATH="~/.cabal/bin:".$PATH
 let $PATH="/opt/local/bin:".$PATH
 let $PATH="~/.composer/vendor/bin:".$PATH
 let $PATH="~/.rbenv/shims:".$PATH
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
-
