@@ -1,6 +1,6 @@
 set nocompatible
 
-" Vim起動完了時にインストール
+"Vim起動完了時にインストール
 augroup PluginInstall
   autocmd!
   autocmd VimEnter * if dein#check_install() | call dein#install() | endif
@@ -57,6 +57,7 @@ if dein#load_state(s:plugin_dir)
   call dein#add('AndrewRadev/switch.vim')
   " Unit...
   call dein#add('Shougo/unite.vim')
+  call dein#add('h1mesuke/unite-outline')
 
   "VimからGitを操作
   call dein#add('tpope/vim-fugitive')
