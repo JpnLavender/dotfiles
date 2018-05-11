@@ -1,0 +1,12 @@
+snippet     type, struct
+abbr        type Object struct
+  type ${0:Object} struct {
+    ${1}
+  }
+
+snippet     if
+abbr        if {...}
+  if ${0} {
+    ${1}
+    ${2:return}
+  }
