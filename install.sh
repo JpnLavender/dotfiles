@@ -51,9 +51,7 @@ function copy_vimrc {
 #install-package
 function install_package {
     echo "------------------------------ install package ------------------------------"
-    for package in zsh vim git tmux tig; do
-        sudo apt-get install $package
-    done
+    sudo apt install -y zsh vim git tmux tig
 }
 
 #default-change-shell
