@@ -58,6 +58,7 @@ if dein#load_state(s:plugin_dir)
   " Unit...
   call dein#add('Shougo/unite.vim')
   call dein#add('h1mesuke/unite-outline')
+  call dein#add('rking/ag.vim')
 
   "VimからGitを操作
   call dein#add('tpope/vim-fugitive')
