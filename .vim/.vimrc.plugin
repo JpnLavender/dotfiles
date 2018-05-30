@@ -498,5 +498,10 @@ let g:syntastic_warning_symbol = "\u26A0"
 let g:syntastic_mode_map = { 'mode': 'passive',
      \ 'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
+""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""
+" Markdown
+""""""""""""""""""""""""""""""
+  au BufRead,BufNewFile *.md set filetype=markdown
 """"""""""""""""""""""""""""""

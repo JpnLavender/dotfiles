@@ -59,6 +59,11 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/unite.vim')
   call dein#add('h1mesuke/unite-outline')
   call dein#add('rking/ag.vim')
+  call dein#add('Shougo/neomru.vim')
+  " Markdown
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('kannokanno/previm')
+  call dein#add('tyru/open-browser.vim')
 
   "VimからGitを操作
   call dein#add('tpope/vim-fugitive')
