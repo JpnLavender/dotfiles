@@ -1,89 +1,25 @@
-set nocompatible
-
-"Vim起動完了時にインストール
-augroup PluginInstall
-  autocmd!
-  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
-augroup END
-
-" 各プラグインをインストールするディレクトリ
-let s:plugin_dir = expand('$HOME/.vim/bundle/')
-" dein.vimをインストールするディレクトリをランタイムパスへ追加
-let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
-execute 'set runtimepath+=' . s:dein_dir
-
-" dein.vimがまだ入ってなければ 最初に`git clone`
-if !isdirectory(s:dein_dir)
-  call mkdir(s:dein_dir, 'p')
-  silent execute printf('!git clone %s %s', 'https://github.com/Shougo/dein.vim', s:dein_dir)
+if !&compatible
+  set nocompatible
 endif
 
-if dein#load_state(s:plugin_dir)
-  call dein#begin(s:plugin_dir)
+" reset augroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
-  " ここからインストールするプラグインを書いていく
-  call dein#add('Shougo/dein.vim')
-  " 下のステータスバーをかっこよくする
-  call dein#add('itchyny/lightline.vim')
-  " コメントアウトを簡単に
-  call dein#add('tomtom/tcomment_vim')
-  " Ruby向けにendを自動挿入してくれる
-  call dein#add('tpope/vim-endwise')
-  " 括弧の自動挿入
-  call dein#add('Townk/vim-autoclose')
-  " カッコをつけたり消したりするのを簡単に
-  call dein#add('tpope/vim-surround')
-  " 補完機能
-  call dein#add('Shougo/neocomplete')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
-  " Gitの差分チェッ
-  call dein#add('airblade/vim-gitgutter')
-  "確かMarkdownとかで他の言語が埋め込まれてる時に便利になるやつ
-  call dein#add('Shougo/context_filetype.vim')
-  "入力補助
-  call dein#add('mattn/emmet-vim')
-  "移動効率化
-  call dein#add('deris/vim-gothrough-jk')
-  "tmux<->vim間をシームレスに"
-  call dein#add('christoomey/vim-tmux-navigator')
-  "quickrun"
-  call dein#add('thinca/vim-quickrun')
-  "F移動を連打可能に"
-  call dein#add('rhysd/clever-f.vim')
-  "ペースト時に自動でペーストモードに
-  call dein#add('ConradIrwin/vim-bracketed-paste')
-  "Switch.vim
-  call dein#add('AndrewRadev/switch.vim')
-  " Unit...
-  call dein#add('Shougo/unite.vim')
-  call dein#add('h1mesuke/unite-outline')
-  call dein#add('rking/ag.vim')
-  call dein#add('Shougo/neomru.vim')
-  " Markdown
-  call dein#add('plasticboy/vim-markdown')
-  call dein#add('kannokanno/previm')
-  call dein#add('tyru/open-browser.vim')
-
-  "VimからGitを操作
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('kmnk/vim-unite-giti')
-  "syntax
-  call dein#add('vim-syntastic/syntastic')
-  call dein#add('posva/vim-vue')
-  call dein#add('hokaccha/vim-html5validator')
-  call dein#add('othree/html5.vim')
-  call dein#add('hail2u/vim-css3-syntax')
-  call dein#add('jelera/vim-javascript-syntax')
-  call dein#add('AtsushiM/sass-compile.vim')
-  call dein#add('jason0x43/vim-js-indent')
-  call dein#add('tpope/vim-markdown')
-  call dein#add('fatih/vim-go', {'on_ft' : 'go'})
-  " call dein#add('elixir-lang/vim-elixir')
-  " call dein#add('nikvdp/ejs-syntax')
-  " call dein#add('rhysd/vim-crystal')
-  " call dein#add('derekwyatt/vim-scala')
-
+" dein自体の自動インストール
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.vim/bundle') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
+" プラグイン読み込み＆キャッシュ作成
+let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:toml_file) 
   " インストール後ビルドする場合
   call dein#add('Shougo/vimproc.vim', {
         \ 'build': {
@@ -97,15 +33,6 @@ if dein#load_state(s:plugin_dir)
   call dein#add('Shougo/neocomplete.vim', {
         \ 'if' : has('lua')
         \ })
-
-  " 依存関係がある場合
-  call dein#add('ujihisa/unite-colorscheme', {'depends' : 'Shougo/unite.vim'})
-
-  " 手動でcall dein#source('プラグイン名')して使い始める場合
-  call dein#add('Shougo/vimfiler', {'lazy' : 1})
-
-  " 指定のファイルタイプ使う場合
-  call dein#add('tpope/vim-rails', {'on_ft' : 'ruby'})
 
   " dein.vimで管理して更新だけするリポジトリ（NeoBundleFetchとおなじ）
   call dein#add('jszakmeister/markdown2ctags', {'rtp': ''})
@@ -131,4 +58,10 @@ if dein#load_state(s:plugin_dir)
   call dein#end()
   call dein#save_state()
 endif
+
+" 不足プラグインの自動インストール
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
+
 

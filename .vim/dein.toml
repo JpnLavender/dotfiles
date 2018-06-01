@@ -1,0 +1,135 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]] # 下のステータスバーをかっこよくする
+repo = 'itchyny/lightline.vim'
+
+[[plugins]] # コメントアウトを簡単に
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]] # Ruby向けにendを自動挿入してくれる
+repo = 'tpope/vim-endwise'
+
+[[plugins]] # 括弧の自動挿入
+repo = 'Townk/vim-autoclose'
+
+[[plugins]] # カッコをつけたり消したりするのを簡単に
+repo = 'tpope/vim-surround'
+
+# --- 補完機能 ---
+[[plugins]]
+repo = 'Shougo/neocomplete'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# --- end補完機能end ---
+
+[[plugins]] # Gitの差分チェッ
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]] # 確かMarkdownとかで他の言語が埋め込まれてる時に便利になるやつ
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]] # html入力補助
+repo =  'mattn/emmet-vim' 
+
+[[plugins]] # 移動効率化
+repo = 'deris/vim-gothrough-jk'
+
+[[plugins]] # tmux<->vim間をシームレスに
+repo = 'christoomey/vim-tmux-navigator'
+
+[[plugins]] # quickrun"
+repo = 'thinca/vim-quickrun'
+
+[[plugins]] # F移動を連打可能に
+repo = 'rhysd/clever-f.vim'
+
+
+# --- Unite* ---
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'ujihisa/unite-colorscheme'
+depends = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'h1mesuke/unite-outline'
+
+[[plugins]] # Unite giti/grep でagを使う
+repo = 'rking/ag.vim'
+
+[[plugins]] # 使用したファイルの履歴
+repo = 'Shougo/neomru.vim'
+
+[[plugins]] # Unite からGitを操作
+repo = 'kmnk/vim-unite-giti'
+
+# --- end Unite* end ---
+
+# --- Markdown ---
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+# --- end Markdown end ---
+
+[[plugins]] # vim上でGitを操作
+repo = 'tpope/vim-fugitive'
+
+# --- Syntax* ---
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'hokaccha/vim-html5validator'
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'jelera/vim-javascript-syntax'
+
+[[plugins]]
+repo = 'AtsushiM/sass-compile.vim'
+
+[[plugins]]
+repo = 'jason0x43/vim-js-indent'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+on_ft = ['ruby']
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+# --- end Syntax* end ---
+

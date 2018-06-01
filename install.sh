@@ -46,6 +46,7 @@ function copy_vimrc {
     for filename in basic bundle color indent key path plugin theme; do
         ln $HOME/dotfiles/.vim/.vimrc.$filename $HOME/.vim/.vimrc.$filename
     done
+    ln $HOME/dotfiles/.vim/dein.toml $HOME/.vim/dein.toml
 }
 
 #install-package
