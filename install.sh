@@ -65,10 +65,7 @@ function change_default_shell {
 #anyenv-install & rbenv
 function anyenv_install {
     echo "------------------------------ install anyenv ------------------------------"
-    # install anyenv
     git clone https://github.com/riywo/anyenv ~/.anyenv
-    # anyenv using install rbrnv
-    exec $SHELL -l
     anyenv install rbenv
     exec $SHELL -l
     # install ruby 2.4.0

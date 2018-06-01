@@ -29,8 +29,6 @@ set smartcase
 set hlsearch
 " 行番号を表示する
 set number
-" 隠しファイルをデフォルトで表示させる
-let NERDTreeShowHidden = 1
 "xでyankが消えないように
 noremap "x _x
 "デフォルトでステータスラインの表示
