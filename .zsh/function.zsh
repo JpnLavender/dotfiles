@@ -65,7 +65,7 @@ function peco-z-search
 }
 zle -N peco-z-search
 # bindkey '^h' peco-z-search
-_register_keycommand '^h' peco-z-search
+_register_keycommand '^n' peco-z-search
 
 # ==== git branch ================================================================
 git_branch() {

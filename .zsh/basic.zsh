@@ -1,24 +1,30 @@
 ZSH_THEME="powerlevel9k/powerlevel9k"
-#POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='awesome-fontconfig'
 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs public_ip rbenv)
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S \uf017}"
+
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=4
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs nodeenv chruby)
+
 
 #プラグインの読み込み
-plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-completions zsh-syntax-highlighting zsh-autosuggestions )
 
 # 補完関数の表示を強化する
 fpath=(~/.oh-my-zsh/plugins/zsh-completions/src $fpath)
 autoload -U compinit && compinit 
 zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
-zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
-zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+    zstyle ':completion:*' verbose yes
+    zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+    zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+    zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+        zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+        zstyle ':completion:*:options' description 'yes'
+        zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 
 # 補完候補を一覧で表示する
 setopt auto_list
@@ -55,4 +61,4 @@ setopt inc_append_history
 
 DEFAULT_USER=$(whoami)
 
-#PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
