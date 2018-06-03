@@ -1,8 +1,8 @@
-source ~/.vim/.vimrc.bundle
-source ~/.vim/.vimrc.basic
-source ~/.vim/.vimrc.indent
-source ~/.vim/.vimrc.theme
-source ~/.vim/.vimrc.key
-source ~/.vim/.vimrc.plugin
-source ~/.vim/.vimrc.path
-source ~/.vim/.vimrc.color
+source ~/.config/nvim/.vim/.vimrc.bundle
+source ~/.config/nvim/.vim/.vimrc.basic
+source ~/.config/nvim/.vim/.vimrc.indent
+source ~/.config/nvim/.vim/.vimrc.theme
+source ~/.config/nvim/.vim/.vimrc.key
+source ~/.config/nvim/.vim/.vimrc.plugin
+source ~/.config/nvim/.vim/.vimrc.path
+source ~/.config/nvim/.vim/.vimrc.color
